@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Wishes = () => {
   return (
     <div className='d-flex flex-column align-items-center text-center w-100'>
