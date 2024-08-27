@@ -6,7 +6,8 @@ import Register from './routes/Register';
 import Login from './routes/Login';
 import Home from './routes/Home';
 import { useState,useEffect } from 'react';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -41,7 +42,8 @@ function App() {
           <Route exact path="/login" element={!isAuthenticated ? (<Login setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/dashboard" element={isAuthenticated ? (<AdminPage setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
         </Routes>
-      </Router>   
+      </Router>
+      <ToastContainer/>   
     </div>
   )
 }

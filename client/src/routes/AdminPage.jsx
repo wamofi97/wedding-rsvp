@@ -3,6 +3,8 @@ import AturcaraForm from '../components/form/AturcaraForm'
 import ContactForm from '../components/form/ContactForm'
 import LocationForm from '../components/form/LocationForm'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminPage = ({setAuth}) => {
   const [name,setName] = useState("")
@@ -28,11 +30,13 @@ const AdminPage = ({setAuth}) => {
     e.preventDefault()
     localStorage.removeItem("token")
     setAuth(false)
+    toast.success("Logout successfully!")
   }
 
   useEffect(() => {
     fetchName()
-  },[])
+  })
+
   return (
     <div className='d-flex flex-column align-items-center w-100'>
         <h1>ADMIN PAGE</h1>
@@ -43,6 +47,7 @@ const AdminPage = ({setAuth}) => {
         <AturcaraForm />
         <ContactForm />
         <LocationForm />
+
     </div>
   )
 }

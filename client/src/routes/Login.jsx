@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({setAuth}) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
   })
-  
+
   const {email, password} = inputs
 
   const handleChange = (e) => {
@@ -23,10 +25,14 @@ const Login = ({setAuth}) => {
         body: JSON.stringify(body)
       })
       const data = await response.json()
-      console.log(data)
-      localStorage.setItem("token", data.token)
-      setAuth(true)
-
+      if (data.token){
+        localStorage.setItem("token", data.token)
+        setAuth(true)
+        toast.success("login succesfully!")
+      } else{
+        setAuth(false)
+        toast.error(data)
+      }
     } catch (error) {
       console.error(error.message)
     }
@@ -41,6 +47,7 @@ const Login = ({setAuth}) => {
         <button type='submit' className='btn btn-success btn-block w-100'>login</button>
       </form>
       <Link to="/register" >Do not have account yet? Lets register</Link>
+      <ToastContainer/>
     </div>
   )
 }
