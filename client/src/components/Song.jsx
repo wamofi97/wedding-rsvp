@@ -20,7 +20,7 @@ const Song = () => {
     };
 
   return (
-    <div className="background-music">
+    <div className="background-music d-flex justify-content-center">
       <audio ref={audioRef} loop>
         <source src="/weddingsong.mp3" type="audio/mpeg" />
       </audio>

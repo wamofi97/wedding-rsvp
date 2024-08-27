@@ -1,4 +1,3 @@
-import React from 'react'
 import EventForm from '../components/form/EventForm'
 import AturcaraForm from '../components/form/AturcaraForm'
 import ContactForm from '../components/form/ContactForm'
@@ -13,7 +12,6 @@ const AdminPage = () => {
         <AturcaraForm />
         <ContactForm />
         <LocationForm />
-        
     </div>
   )
 }
