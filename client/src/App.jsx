@@ -8,6 +8,10 @@ import Home from './routes/Home';
 import { useState,useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CreateWedding from './routes/CreateWedding';
+import WeddingLanding from './routes/WeddingLanding';
+import EditWedding from './routes/EditWedding';
+import NotFoundPage from './routes/NotFoundPage';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -41,6 +45,10 @@ function App() {
           <Route exact path="/register" element={!isAuthenticated ? (<Register setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/login" element={!isAuthenticated ? (<Login setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/dashboard" element={isAuthenticated ? (<AdminPage setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
+          <Route path="/create-wedding" element={<CreateWedding />} />
+          <Route path="/wedding/:id" element={<WeddingLanding />} />
+          <Route path="/wedding/:id/edit" element={<EditWedding />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
       <ToastContainer/>   
