@@ -44,7 +44,7 @@ const Login = ({setAuth}) => {
       <form onSubmit={handleSubmit}>
         <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='email' className='form-control my-3'/>
         <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='password' className='form-control my-3'/>
-        <button type='submit' className='btn btn-success btn-block w-100'>login</button>
+        <button type='submit' className='btn btn-primary btn-block w-100'>login</button>
       </form>
       <Link to="/register" >Do not have account yet? Lets register</Link>
       <ToastContainer/>

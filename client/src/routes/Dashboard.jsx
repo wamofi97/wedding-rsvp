@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AdminPage = ({setAuth}) => {
+const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
 
   const fetchName = async () => {
@@ -30,23 +30,24 @@ const AdminPage = ({setAuth}) => {
     localStorage.removeItem("token")
     setAuth(false)
     toast.success("Logout successfully!")
+    console.log(localStorage.token)
   }
 
   useEffect(() => {
     fetchName()
-  })
+  },[])
 
   return (
     <div className='d-flex flex-column align-items-center w-100'>
         <h1>ADMIN PAGE</h1>
         <h2>Welcome {name}!</h2>
-        <button className='btn btn-primary' onClick={e=>logout(e)}>Logout</button>
         <EventForm />
         <AturcaraForm />
         <ContactForm />
         <ToastContainer />
+        <button className='btn btn-dark' onClick={e=>logout(e)}>Logout</button>
     </div>
   )
 }
 
-export default AdminPage
+export default Dashboard

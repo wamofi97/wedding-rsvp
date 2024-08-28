@@ -1,17 +1,18 @@
 import './App.css'
 import {BrowserRouter as Router, Routes,Route, Navigate} from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AdminPage from './routes/AdminPage';
-import Register from './routes/Register';
-import Login from './routes/Login';
-import Home from './routes/Home';
 import { useState,useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './routes/Home';
+import Register from './routes/Register';
+import Login from './routes/Login';
+import Dashboard from './routes/Dashboard';
 import CreateWedding from './routes/CreateWedding';
 import WeddingLanding from './routes/WeddingLanding';
 import EditWedding from './routes/EditWedding';
 import NotFoundPage from './routes/NotFoundPage';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -44,7 +45,7 @@ function App() {
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/register" element={!isAuthenticated ? (<Register setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/login" element={!isAuthenticated ? (<Login setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
-          <Route exact path="/dashboard" element={isAuthenticated ? (<AdminPage setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
+          <Route exact path="/dashboard" element={isAuthenticated ? (<Dashboard setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
           <Route path="/create-wedding" element={<CreateWedding />} />
           <Route path="/wedding/:id" element={<WeddingLanding />} />
           <Route path="/wedding/:id/edit" element={<EditWedding />} />

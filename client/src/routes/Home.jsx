@@ -1,21 +1,15 @@
-import Aturcara from '../components/Aturcara'
-import Contact from '../components/Contact'
-import Countdown from '../components/Countdown'
-import EventDetails from '../components/EventDetails'
-import RSVPForm from '../components/form/RSVPForm'
-import Wishes from '../components/Wishes'
-import Song from '../components/Song'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div>
-        <EventDetails />
-        <Aturcara />
-        <Countdown />
-        <RSVPForm />
-        <Wishes />
-        <Contact />
-        <Song />
+    <div className='d-flex flex-column align-items-center text-center w-100'>
+        <h1>Home</h1>
+        <h2>Create your wedding RSVP page now!</h2>
+        <div>
+          <Link to="/login"><button className='btn btn-light mx-2'>Login</button></Link>
+          <Link to="/register"><button className='btn btn-primary mx-2'>Register</button></Link>
+        </div>
+        
     </div>
   )
 }
