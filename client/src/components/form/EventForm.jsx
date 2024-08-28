@@ -1,14 +1,62 @@
+import { useState, } from "react"
+import { useNavigate } from "react-router-dom"
 
 const EventForm = () => {
+    const navigate = useNavigate();
+
+    const [inputs, setInputs] = useState({
+        weddingTitle: "",
+        fatherName: "",
+        motherName: "",
+        brideName: "",
+        groomName: "",
+        location: "",
+        googlemapcode: "",
+        date: "",
+        time: ""
+      })
+
+    const {weddingTitle, fatherName, motherName, brideName, groomName, location, googlemapcode, date, time} = inputs
+    
+    const handleChange = (e) => {
+        setInputs({...inputs, [e.target.id] : e.target.value})
+      }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          await axios.post('/api/event', formData);
-          // Show success message
+            const response = await fetch('http://localhost:5000/wedding/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: localStorage.token
+                },
+                body: JSON.stringify({
+                    weddingTitle,
+                    fatherName, 
+                    motherName, 
+                    brideName, 
+                    groomName, 
+                    location, 
+                    googlemapcode, 
+                    date, 
+                    time
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Wedding created with ID:', data.weddingId);
+                // You can redirect or show a success message here
+                navigate("/dashboard")
+
+            } else {
+                console.error('Failed to create wedding', response.statusText);
+            }
         } catch (error) {
-          // Handle error
+            console.error('Error creating wedding', error);
         }
-      };
+    }
 
   return (
     <div className='d-flex flex-column align-items-center w-100'>
@@ -18,34 +66,42 @@ const EventForm = () => {
                 <tbody>
                     <tr >
                         <td >
-                            <label htmlFor="father-name">Nama Bapa</label>
+                            <label htmlFor="weddingTitle">Wedding Title</label>
                         </td>
                         <td>
-                            <input type="text" id='father-name' placeholder='Nama Bapa' className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id='weddingTitle' placeholder='Title Wedding Anda' className='form-control'/>
                         </td>
                     </tr>
                     <tr >
                         <td >
-                            <label htmlFor="mother-name">Nama Ibu</label>
+                            <label htmlFor="fatherName">Nama Bapa</label>
                         </td>
                         <td>
-                            <input type="text" id='mother-name' placeholder='Nama Ibu' className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id='fatherName' placeholder='Nama Bapa' className='form-control'/>
                         </td>
                     </tr>
                     <tr >
                         <td >
-                            <label htmlFor="male-name">Nama Pengantin 1(male)</label>
+                            <label htmlFor="motherName">Nama Ibu</label>
                         </td>
                         <td>
-                            <input type="text" id='male-name' className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id='motherName' placeholder='Nama Ibu' className='form-control'/>
                         </td>
                     </tr>
                     <tr >
                         <td >
-                            <label htmlFor="female-name">Nama Pengantin 2(female)</label>
+                            <label htmlFor="groomName">Nama Pengantin 1(groom)</label>
                         </td>
                         <td>
-                            <input type="text" id='female-name' className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id='groomName' className='form-control'/>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <label htmlFor="brideName">Nama Pengantin 2(bride)</label>
+                        </td>
+                        <td>
+                            <input type="text" onChange={e => handleChange(e)} id='brideName' className='form-control'/>
                         </td>
                     </tr>
                     <tr >
@@ -53,7 +109,7 @@ const EventForm = () => {
                             <label htmlFor="location">Tempat</label>
                         </td>
                         <td>
-                            <input type="text" id="location" className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id="location" className='form-control'/>
                         </td>
                     </tr>
                     <tr >
@@ -61,7 +117,7 @@ const EventForm = () => {
                             <label htmlFor="googlemapcode">Link Lokasi Google Map</label>
                         </td>
                         <td>
-                            <input type="text" id="location" className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id="location" className='form-control'/>
                         </td>
                     </tr>
                     <tr >
@@ -69,7 +125,7 @@ const EventForm = () => {
                             <label htmlFor="date">Tarikh</label>
                         </td>
                         <td>
-                            <input type="date" id="date" className='form-control'/>
+                            <input type="date" onChange={e => handleChange(e)} id="date" className='form-control'/>
                         </td>
                     </tr>
                     <tr >
@@ -77,7 +133,7 @@ const EventForm = () => {
                             <label htmlFor="time">Masa</label>
                         </td>
                         <td>
-                            <input type="time" id="time" className='form-control'/>
+                            <input type="time" onChange={e => handleChange(e)} id="time" className='form-control'/>
                         </td>
                     </tr>
                 </tbody>
