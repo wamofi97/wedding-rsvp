@@ -1,4 +1,3 @@
-import React from 'react'
 
 const EventDetails = () => {
   return (
@@ -11,7 +10,6 @@ const EventDetails = () => {
         <h1>SITI BIN HAMID</h1>
         <p>Pada Tarikh</p>
         <h3>SABTU, 10 MAY 2025</h3>
-        <p>BERSAMAAN 12 ZULKAEDAH 1446h </p>
         <p>Bertempat Di</p>
         <h3>DEWAN KAHWIN SUNGAI PETANI</h3>
         <p>Masa</p>

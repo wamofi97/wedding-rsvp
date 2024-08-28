@@ -1,7 +1,6 @@
 import EventForm from '../components/form/EventForm'
 import AturcaraForm from '../components/form/AturcaraForm'
 import ContactForm from '../components/form/ContactForm'
-import LocationForm from '../components/form/LocationForm'
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,12 +41,10 @@ const AdminPage = ({setAuth}) => {
         <h1>ADMIN PAGE</h1>
         <h2>Welcome {name}!</h2>
         <button className='btn btn-primary' onClick={e=>logout(e)}>Logout</button>
-
         <EventForm />
         <AturcaraForm />
         <ContactForm />
-        <LocationForm />
-
+        <ToastContainer />
     </div>
   )
 }

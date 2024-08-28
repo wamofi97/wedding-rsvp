@@ -50,6 +50,22 @@ const EventForm = () => {
                     </tr>
                     <tr >
                         <td >
+                            <label htmlFor="location">Tempat</label>
+                        </td>
+                        <td>
+                            <input type="text" id="location" className='form-control'/>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
+                            <label htmlFor="googlemapcode">Link Lokasi Google Map</label>
+                        </td>
+                        <td>
+                            <input type="text" id="location" className='form-control'/>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td >
                             <label htmlFor="date">Tarikh</label>
                         </td>
                         <td>
