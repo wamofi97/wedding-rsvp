@@ -35,7 +35,7 @@ const Dashboard = ({setAuth}) => {
   }
 
   const navigateEdit = () =>{
-    navigate('/wedding/:id/edit')
+    navigate(`/wedding/${linkPage}/edit`)
   }
 
   const logout = (e) => {

@@ -2,6 +2,7 @@ const router = require("express").Router()
 const pool = require("../db")
 const authorization = require("../middleware/authorization")
 
+//create wedding
 router.post("/", authorization, async(req,res) =>{
     const { weddingTitle, fatherName, motherName, brideName, groomName, location, googlemapcode, date, time } = req.body;
     try {
@@ -19,6 +20,7 @@ router.post("/", authorization, async(req,res) =>{
     }
 });
 
+//get wedding
 router.get("/:id", async(req,res) =>{
     try {
         const id = req.params.id;
@@ -32,10 +34,11 @@ router.get("/:id", async(req,res) =>{
     }
 });
 
+//update wedding
 router.put("/:id/edit", authorization, async(req,res) =>{
-    const { weddingTitle, fatherName, motherName, brideName, groomName, location, googlemapcode, date, time } = req.body;
+    const { wedding_title, father_name, mother_name, bride_name, groom_name, location, googlemapcode, wedding_date,wedding_time } = req.body;
     try {
-        const results = await db.query("UPDATE weddings SET wedding_title = $1, father_name = $2, mother_name = $3, bride_name = $4, groom_name = $5, location = $6, googlemapcode = $7, wedding_date = $8, wedding_time = $9  where user_id = $10 returning *", [weddingTitle, fatherName, motherName, brideName, groomName, location, googlemapcode, date, time, req.user]);
+        const result = await pool.query("UPDATE weddings SET wedding_title = $1, father_name = $2, mother_name = $3, bride_name = $4, groom_name = $5, location = $6, googlemapcode = $7, wedding_date = $8, wedding_time = $9  where user_id = $10 returning *", [wedding_title, father_name, mother_name, bride_name, groom_name, location, googlemapcode, wedding_date,wedding_time, req.user]);
         const weddingData = result.rows[0];
         
         res.status(200).json( weddingData );

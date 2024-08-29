@@ -117,7 +117,7 @@ const EventForm = () => {
                             <label htmlFor="googlemapcode">Link Lokasi Google Map</label>
                         </td>
                         <td>
-                            <input type="text" onChange={e => handleChange(e)} id="location" className='form-control'/>
+                            <input type="text" onChange={e => handleChange(e)} id="googlemapcode" className='form-control'/>
                         </td>
                     </tr>
                     <tr >
