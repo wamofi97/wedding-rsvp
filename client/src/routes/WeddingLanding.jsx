@@ -4,8 +4,10 @@ import RSVPForm from '../components/form/RSVPForm'
 import Song from '../components/Song'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import EntryModal from '../components/EntryModal';
 
 const WeddingLanding = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [weddingData, setWeddingData] = useState({})
   const { id } = useParams();
 
@@ -25,16 +27,21 @@ const WeddingLanding = () => {
     fetchData()
   },[])
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
+  
   return (
     <div>
-        <p>{weddingData.id}</p>
-        <EventDetails weddingData={weddingData} />
-        {/* <Aturcara /> */}
-        <Countdown weddingData={weddingData}/>
-        <RSVPForm />
-        {/* <Wishes />
-        <Contact /> */}
-        <Song />
+        <EntryModal isOpen={isModalOpen} onClose={closeModal} />
+        {!isModalOpen && (
+        <>
+          <EventDetails weddingData={weddingData} />
+          <Countdown weddingData={weddingData} />
+          <RSVPForm />
+          <Song />
+        </>
+        )}
     </div>
   )
 }

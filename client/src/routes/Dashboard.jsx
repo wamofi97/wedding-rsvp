@@ -55,7 +55,7 @@ const Dashboard = ({setAuth}) => {
         <h1>ADMIN PAGE</h1>
         <h2>Welcome {name}!</h2>
         <p>Wedding title : {title} </p>
-        <p>Go to created page : <Link to={`/wedding/${linkPage}`} >http://localhost:5173/wedding/{linkPage}</Link></p>
+        <p>Go to created page : <a href={`/wedding/${linkPage}`} target="_blank" rel="noopener noreferrer">http://localhost:5173/wedding/{linkPage}</a></p>
 
         <button onClick={e => navigateEdit(e)} className='btn btn-secondary my-4'>Edit wedding</button>
         {/* <EventForm />

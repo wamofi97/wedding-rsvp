@@ -42,8 +42,8 @@ const EventDetails = ({weddingData}) => {
         <h2>{weddingData.father_name}</h2>
         <h2>{weddingData.mother_name}</h2>
         <p>Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis Perkahwinan ini</p>
-        <h1>{weddingData.groom_name}</h1>
-        <h1>{weddingData.bride_name}</h1>
+        <h2>{weddingData.groom_name}</h2>
+        <h2>{weddingData.bride_name}</h2>
         <p>Pada Tarikh</p>
         <h3>{formattedDate}</h3>
         <p>Bertempat Di</p>

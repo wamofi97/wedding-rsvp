@@ -1,7 +1,7 @@
 import { useRef, useState,useEffect } from 'react';
 
 const Song = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const audioRef = useRef(null);
     
     useEffect(() => {
@@ -21,7 +21,7 @@ const Song = () => {
 
   return (
     <div className="background-music d-flex justify-content-center">
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop autoPlay>
         <source src="/weddingsong.mp3" type="audio/mpeg" />
       </audio>
       <button onClick={togglePlay}>
