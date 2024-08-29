@@ -2,6 +2,8 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 
+const port = process.env.PORT || 3000
+
 //middleware
 app.use(express.json())
 app.use(cors())
@@ -17,6 +19,6 @@ app.use("/dashboard", require("./routes/dashboard"))
 // createWedding, get wedding, update wedding route
 app.use("/wedding", require("./routes/wedding"))
 
-app.listen(5000, () => {
-    console.log("server is running on port 5000")
+app.listen(port, () => {
+    console.log(`server is running on port ${port}`)
 })
