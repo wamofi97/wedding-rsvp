@@ -10,7 +10,7 @@ const CreateWedding = ({setAuth}) => {
 
   const fetchName = async () => {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/dashboard/`, {
         method: "GET",
         headers: {
           token: localStorage.token

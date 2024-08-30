@@ -13,7 +13,7 @@ const WeddingLanding = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/wedding/${id}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}`)
       const data = await response.json()
       console.log(data)
       setWeddingData(data)
@@ -33,7 +33,7 @@ const WeddingLanding = () => {
   
   return (
     <div>
-        <EntryModal isOpen={isModalOpen} onClose={closeModal} />
+        <EntryModal weddingData={weddingData} isOpen={isModalOpen} onClose={closeModal} />
         {!isModalOpen && (
         <>
           <EventDetails weddingData={weddingData} />

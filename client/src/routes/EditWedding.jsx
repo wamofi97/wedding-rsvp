@@ -20,7 +20,7 @@ const EditWedding = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/dashboard/", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/dashboard/`, {
         method: "GET",
         headers: {
           token: localStorage.token
@@ -57,7 +57,7 @@ const EditWedding = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch(`http://localhost:5000/wedding/${id}/edit`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/edit`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
