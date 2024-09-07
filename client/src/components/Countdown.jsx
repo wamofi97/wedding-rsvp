@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 
 const Countdown = ({ weddingData }) => {
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(weddingData.wedding_date));
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(weddingData.date));
 
     useEffect(() => {
-        const weddingDate = weddingData.wedding_date; // Declare weddingDate here
+        const weddingDate = weddingData.date;
         const timer = setInterval(() => {
             setTimeLeft(calculateTimeLeft(weddingDate));
         }, 1000);
-
+        
         return () => clearInterval(timer);
     }, [weddingData]);
 

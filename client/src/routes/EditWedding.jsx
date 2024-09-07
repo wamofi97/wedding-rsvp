@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import AturcaraForm from '../components/form/AturcaraForm'
+import EventForm from "../components/form/EventForm";
 
 const EditWedding = () => {
   const { id } = useParams();
@@ -8,19 +10,28 @@ const EditWedding = () => {
     wedding_title: "",
     father_name: "",
     mother_name: "",
-    bride_name: "",
-    groom_name: "",
+    bride_name: { firstName: "", lastName: "" },
+    groom_name: { firstName: "", lastName: "" },
     location: "",
     googlemapcode: "",
-    wedding_date: "",
-    wedding_time: ""
+    date: "",
+    time: "",
   })
 
-  const {wedding_title, father_name, mother_name, bride_name, groom_name, location, googlemapcode, wedding_date, wedding_time} = inputs
+  const {
+    wedding_title, 
+    father_name, 
+    mother_name, 
+    bride_name, 
+    groom_name, 
+    location, 
+    googlemapcode, 
+    date, 
+    time } = inputs
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/dashboard/`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}`, {
         method: "GET",
         headers: {
           token: localStorage.token
@@ -28,14 +39,14 @@ const EditWedding = () => {
       })
       
       const data = await response.json()
-      const datePart = data.wedding_date.split('T')[0];
+      const datePart = data.date.split('T')[0];
       console.log("data", data)
       setInputs((prevInputs) => ({
         ...prevInputs, 
         ...data, 
-        wedding_date : datePart
+        date : datePart
       }))
-      console.log("inputs", inputs)
+      console.log("this is inputs", inputs)
       
     } catch (error) {
       console.error(error.message)
@@ -45,17 +56,29 @@ const EditWedding = () => {
   useEffect(() => {
     fetchData()
   },[])
-  
+
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setInputs(prevInputs => ({
-      ...prevInputs,
-      [id]: value
-    }));
+    const { name, value } = e.target;
+    const keys = name.split(".");  // Handle nested fields
+
+    if (keys.length === 2) {
+      setInputs((prevState) => ({
+        ...prevState,
+        [keys[0]]: {
+          ...prevState[keys[0]],
+          [keys[1]]: value,
+        },
+      }));
+    } else {
+      setInputs({
+        ...inputs,
+        [name]: value,
+      })
+    }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/edit`, {
             method: 'PUT',
@@ -64,15 +87,15 @@ const EditWedding = () => {
                 token: localStorage.token
             },
             body: JSON.stringify({
-                wedding_title,
-                father_name,
-                mother_name,
-                bride_name,
-                groom_name,
-                location,
-                googlemapcode,
-                wedding_date,
-                wedding_time
+                wedding_title, 
+                father_name, 
+                mother_name, 
+                bride_name, 
+                groom_name, 
+                location, 
+                googlemapcode, 
+                date, 
+                time
             })
         });
 
@@ -86,88 +109,43 @@ const EditWedding = () => {
     }
   }
   return (
-        <div className='d-flex flex-column align-items-center w-100'>
-          <h2>Event Details</h2>
-          <form onSubmit={handleSubmit} className='w-100'>
-              <table className="w-100">
-                  <tbody>
-                      <tr >
-                          <td >
-                              <label htmlFor="wedding_title">Wedding Title</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={wedding_title} id='wedding_title' placeholder='Title Wedding Anda' className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="father_name">Nama Bapa</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={father_name} id='father_name' placeholder='Nama Bapa' className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="mother_name">Nama Ibu</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={mother_name} id='mother_name' placeholder='Nama Ibu' className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="groom_name">Nama Pengantin 1(groom)</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={groom_name} id='groom_name' className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="bride_name">Nama Pengantin 2(bride)</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={bride_name} id='bride_name' className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="location">Tempat</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={location} id="location" className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="googlemapcode">Link Lokasi Google Map</label>
-                          </td>
-                          <td>
-                              <input type="text" onChange={e => handleChange(e)} value={googlemapcode} id="googlemapcode" className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="wedding_date">Tarikh</label>
-                          </td>
-                          <td>
-                              <input type="date" onChange={e => handleChange(e)} value={wedding_date} id="wedding_date" className='form-control'/>
-                          </td>
-                      </tr>
-                      <tr >
-                          <td >
-                              <label htmlFor="wedding_time">Masa</label>
-                          </td>
-                          <td>
-                              <input type="time" onChange={e => handleChange(e)} value={wedding_time} id="wedding_time" className='form-control'/>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-              <button type='submit' className='btn btn-success'>Save</button>
+        <div className='d-flex flex-column w-100'>
+            <h2 className="">Event Details</h2>
+            <form onSubmit={handleSubmit} >
+                <label htmlFor="weddingTitle">Wedding Title</label>
+                <input type="text" onChange={handleChange} value={wedding_title} name="wedding_title" placeholder="Title Wedding Anda" className="form-control" />
 
-          </form>
+                <label htmlFor="fatherName">Nama Bapa</label>
+                <input type="text" onChange={handleChange} value={father_name} name="father_name" placeholder="Nama Bapa" className="form-control" />
+
+                <label htmlFor="motherName">Nama Ibu</label>
+                <input type="text" onChange={handleChange} value={mother_name} name="mother_name" placeholder="Nama Ibu" className="form-control" />
+
+                <label>Nama Pengantin 1 (groom)</label>
+                <input type="text" onChange={handleChange} value={groom_name?.firstName || ""} name="groom_name.firstName" placeholder="First Name" className="form-control" />
+                <input type="text" onChange={handleChange} value={groom_name?.lastName || ""} name="groom_name.lastName" placeholder="Last Name" className="form-control" />
+
+                <label>Nama Pengantin 2 (bride)</label>
+                <input type="text" onChange={handleChange} value={bride_name?.firstName || ""} name="bride_name.firstName" placeholder="First Name" className="form-control" />
+                <input type="text" onChange={handleChange} value={bride_name?.lastName || ""} name="bride_name.lastName" placeholder="Last Name" className="form-control" />
+
+                <label>Tempat</label>
+                <input type="text" onChange={handleChange} value={location} name="location" className="form-control" />
+
+                <label>Link Lokasi Google Map</label>
+                <input type="text" onChange={handleChange} value={googlemapcode} name="googlemapcode" className="form-control" />
+
+                <label>Tarikh</label>
+                <input type="date" onChange={handleChange} value={date} name="date" className="form-control" />
+
+                <label>Masa</label>
+                <input type="time" onChange={handleChange} value={time} name="time" className="form-control" />
+            
+                <button type="submit" className="btn btn-success">Save</button>
+            </form>
+            
+          
+          {/* <AturcaraForm /> */}
       </div>
   )
 }

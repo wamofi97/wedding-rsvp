@@ -39,7 +39,7 @@ function App() {
   })
 
   return (
-    <div className='container d-flex gap-5 flex-column align-items-center' style={{ maxWidth: '500px'}}>
+    <div className='container d-flex flex-column align-items-center' style={{ maxWidth: '500px'}}>
       <Router>
         <Routes >
           <Route exact path="/" element={<Home />}/>
@@ -52,6 +52,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
+      <p className='ps' style={{position:'absolute', bottom:0}}>© 2024. Made with <span className='love'>❤</span> by wamofi.dev</p>
       <ToastContainer/>   
     </div>
   )

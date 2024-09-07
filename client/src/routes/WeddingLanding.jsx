@@ -17,7 +17,7 @@ const WeddingLanding = () => {
       const data = await response.json()
       console.log(data)
       setWeddingData(data)
-      console.log("wedding data: ", weddingData)
+      document.title = "Walimatul Urus, " + data.wedding_title
     } catch (error) {
       console.error(error.message)
     }
@@ -32,7 +32,7 @@ const WeddingLanding = () => {
   }
   
   return (
-    <div>
+    <div className='w-100'>
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} onClose={closeModal} />
         {!isModalOpen && (
         <>

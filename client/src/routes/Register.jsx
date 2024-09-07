@@ -7,10 +7,12 @@ const Register = ({setAuth}) => {
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   })
+  const [error, setError] = useState('');
   
-  const {name, email, password} = inputs
+  const {name, email, password, confirmPassword} = inputs
 
   const handleChange = (e) => {
     setInputs({...inputs, [e.target.name] : e.target.value})
@@ -19,6 +21,10 @@ const Register = ({setAuth}) => {
   const handleSubmit = async(e) => {
     e.preventDefault()
     try {
+      if(confirmPassword !== password){
+        setError("Oops! Your passwords don’t match. Please make sure both fields have the same password.")
+        throw new Error("Passwords do not match")
+      }
       const body = {name,email,password}
       const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`,{
         method: "POST",
@@ -40,15 +46,30 @@ const Register = ({setAuth}) => {
   }
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className='w-100 pt-5 text-center' style={{height: "100vh"}}>
+      <h4>WELCOME TO</h4>
+      <h5>walimatulRSVP</h5>
+      <p className='ps'>Start creating your dream wedding RSVP page today.</p>
+      <hr className='my-5'/>
       <form onSubmit={handleSubmit}>
-        <input onChange={e => handleChange(e)} type="name" name='name' value={name} placeholder='name' className='form-control my-3' />
-        <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='email' className='form-control my-3'/>
-        <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='password' className='form-control my-3'/>
-        <button type='submit' className='btn btn-primary btn-block w-100'>Register</button>
+        <label htmlFor="name" className='pr mb-1 d-block text-start'>Name</label>
+        <input onChange={e => handleChange(e)} type="name" name='name' value={name} placeholder='Enter your name' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4" }}/>
+
+        <label htmlFor="email" className='pr mb-1 d-block text-start'>Email</label>
+        <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='Enter your email' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4"}}/>
+
+        <label htmlFor="password" className='pr mb-1 d-block text-start'>Password</label>
+        <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='Enter your password' className='form-control mb-3' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
+
+        <label htmlFor="confirmPassword" className='pr mb-1 d-block text-start'>Reconfirm password</label>
+        <input onChange={e => handleChange(e)} type="password" name='confirmPassword' value={confirmPassword} placeholder='Re-enter your password' className='form-control mb-3' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
+
+        {error && <p className='pr' style={{ color: 'red' }}>{error}</p>}
+
+        <button type='submit' className='button btn-primary text-center'>Register</button>
       </form>
-      <Link to="/login">Login</Link>
+      <Link to="/login" className='link linkyellow'>Already have an account? Log In</Link>
+      
       <ToastContainer/>
     </div>
   )

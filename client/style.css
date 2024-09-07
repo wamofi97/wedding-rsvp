@@ -1,0 +1,144 @@
+hr{
+    display: block
+}
+
+.love{
+    color:rgb(199, 116, 130);
+    transition: transform 0.3s ease; 
+}
+
+.love:hover{
+    color: rgb(255, 71, 71);
+    transform: scale(1.4);
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Bespoke Serif', serif;
+ }
+
+h1{
+  font-size: 48px;
+}
+
+h2{
+  font-size: 40px;
+}
+
+h3{
+  font-size: 33px;
+}
+
+h4{
+  font-size: 28px;
+}
+
+h5{
+  font-size: 23px;
+}
+
+h6{
+  font-size: 19px;
+}
+
+p{
+  font-size: 16px;
+}
+
+.pr{
+  font-size: 13px;
+}
+
+.ps{
+  font-size: 11px;
+}
+
+p, .pr, .ps{
+    font-family: 'Montserrat', sans-serif;
+ }
+
+.link{
+    color: #001F3F;
+}
+
+.linkpage{
+    text-decoration: none;
+    color: black;
+}
+
+.linkyellow{
+    color: #D9B700;
+}
+
+.link:hover{
+    color: #FFD700;
+}
+
+.button{
+    margin: 16px 0;
+    border-radius: 20px;
+    border: none;
+    color: #001F3F;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Bespoke Serif', serif; 
+    letter-spacing: 0.1rem;
+    padding: 8px 16px;
+}
+
+.btn-primary{
+    background-color: #FFD697;
+    color: #001F3F;
+}
+
+.btn-primary:hover{
+    background-color: #FFD700;
+    color: #001F3F;
+}
+
+.btn-secondary{
+    background-color: #EAEAEA;
+}
+
+.btn-secondary:hover{
+    background-color: #D2D2D2;
+}
+
+span{
+    font-weight: bold;
+}
+
+input::placeholder {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 11px !important;
+  }
+
+.quote{
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.bilbo-swash-caps-regular {
+    font-family: "Bilbo Swash Caps", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 23px;
+    letter-spacing: 7px;
+  }
+
+  .names{
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+    font-size: 28px;
+  }
+
+
+  /* .inputp{
+    background-color: pink
+  } */
+
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Bespoke Serif', serif;
+font-family: 'Clash Display', sans-serif;
+font-family: "Poppins", sans-serif; */  

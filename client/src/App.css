@@ -7,6 +7,18 @@
     transition: background-color 0.3s;
   }
   
-  .background-music button:hover {
+.background-music button:hover {
     background-color: #ffdada;
   }
+
+.container{
+   background-color: #FFFFF0;
+}
+
+input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11;
+}
+
+
+

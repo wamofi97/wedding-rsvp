@@ -39,14 +39,20 @@ const Login = ({setAuth}) => {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className='w-100 pt-5 text-center' style={{height: "100vh"}}>
+      <h4>WELCOME BACK TO</h4>
+      <h5>walimatulRSVP</h5>
+      <p className='ps'>Start creating your dream wedding RSVP page today.</p>
+      <hr className='my-5'/>
       <form onSubmit={handleSubmit}>
-        <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='email' className='form-control my-3'/>
-        <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='password' className='form-control my-3'/>
-        <button type='submit' className='btn btn-primary btn-block w-100'>login</button>
+        <label htmlFor="email" className='pr mb-1 d-block text-start'>Email</label>
+        <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='Enter your email' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4"}}/>
+
+        <label htmlFor="password" className='pr mb-1 d-block text-start'>Password</label>
+        <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='Enter your password' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4"}}/>
+        <button type='submit' className='button btn-primary'>Login</button>
       </form>
-      <Link to="/register" >Do not have account yet? Lets register</Link>
+      <Link to="/register" className="link linkyellow">Do not have account yet? Lets register</Link>
       <ToastContainer/>
     </div>
   )

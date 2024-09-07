@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react'
 
 const CreateWedding = ({setAuth}) => {
   const [name,setName] = useState("")
-  const [hasWedding, setHasWedding] = useState("false")
-  // const [userId, setUserId] = useState("")
 
   const fetchName = async () => {
     try {
@@ -20,10 +18,6 @@ const CreateWedding = ({setAuth}) => {
       const data = await response.json()
       console.log(data)
       setName(data.username)
-      if(data.has_wedding){
-        setHasWedding(true)
-      }
-      
     } catch (error) {
       console.error(error.message)
     }
@@ -47,7 +41,7 @@ const CreateWedding = ({setAuth}) => {
         <h2>Create your own wedding RSVP!</h2>
         <EventForm />
         {/* <ToastContainer /> */}
-        <button className='btn btn-dark' onClick={e=>logout(e)}>Logout</button>
+        <button className='button' onClick={e=>logout(e)}>Logout</button>
     </div>
   )
 }

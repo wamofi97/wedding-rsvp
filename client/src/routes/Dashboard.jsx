@@ -4,12 +4,13 @@
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
-  const [title,setTitle] = useState("")
   const [linkPage, setLinkPage] = useState("")
+  const [weddingPageLink, setWeddingPageLink] = useState('')
+  const [copySuccess, setCopySuccess] = useState('');
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -27,12 +28,22 @@ const Dashboard = ({setAuth}) => {
         navigate('/create-wedding')
       }
       setName(data.username)
-      setTitle(data.wedding_title)
       setLinkPage(data.user_id)
+      setWeddingPageLink(`${import.meta.env.VITE_API_URL}/wedding/${linkPage}`)
     } catch (error) {
       console.error(error.message)
     }
   }
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(weddingPageLink)
+      .then(() => {
+        setCopySuccess('Link copied!');
+      })
+      .catch(err => {
+        setCopySuccess('Failed to copy link');
+      });
+  };
 
   const navigateEdit = () =>{
     navigate(`/wedding/${linkPage}/edit`)
@@ -48,21 +59,30 @@ const Dashboard = ({setAuth}) => {
 
   useEffect(() => {
     fetchData()
-  },[])
+  },[name])
 
   return (
-    <div className='d-flex flex-column align-items-center w-100'>
-        <h1>ADMIN PAGE</h1>
-        <h2>Welcome {name}!</h2>
-        <p>Wedding title : {title} </p>
-        <p>Go to created page : <a href={`/wedding/${linkPage}`} target="_blank" rel="noopener noreferrer">{import.meta.env.VITE_API_URL}/wedding/{linkPage}</a></p>
+    <div className='d-flex flex-column align-items-center w-100 py-5 vh-100'>
+        <h4>Dashboard</h4>
+        <p className='pr'>Congratulations <strong>{name}</strong>! Your personalized wedding RSVP page is ready. From here, you can manage every detail of your special day. </p>
 
-        <button onClick={e => navigateEdit(e)} className='btn btn-secondary my-4'>Edit wedding</button>
+        <h5>Your Wedding Page</h5>
+        <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
+        
+        <textarea className='w-100 text-center pr' style={{border: 'none', borderRadius: '8px', height:'3em', backgroundColor: '#FFF8D4'}} defaultValue={weddingPageLink}></textarea>
+        <div className='d-flex gap-3'>
+          <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
+          <button className='button btn-primary'><a href={`/wedding/${linkPage}`} target="_blank" className='linkpage'>View Page</a></button>
+        </div>
+        
+        {copySuccess && <p className='pr' style={{ color: 'green', marginTop: '10px' }}>{copySuccess}</p>}
+
+        <button onClick={e => navigateEdit(e)} className='button'>Edit wedding</button>
         {/* <EventForm />
         <AturcaraForm />
         <ContactForm /> */}
         <ToastContainer />
-        <button className='btn btn-dark' onClick={e=>logout(e)}>Logout</button>
+        <button className='button' onClick={e=>logout(e)}>Logout</button>
     </div>
   )
 }
