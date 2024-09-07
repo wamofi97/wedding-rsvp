@@ -145,7 +145,7 @@ const EditWedding = () => {
             </form>
             
           
-          {/* <AturcaraForm /> */}
+          <AturcaraForm />
       </div>
   )
 }

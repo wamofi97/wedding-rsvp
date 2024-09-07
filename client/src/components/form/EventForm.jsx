@@ -76,13 +76,9 @@ const EventForm = () => {
             time,
         }),
       });
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Wedding created with ID:", data.weddingId);
-        navigate("/dashboard");
-      } else {
-        console.error("Failed to create wedding", response.statusText);
-      }
+      const data = await response.json();
+      console.log("Wedding created with ID:", data.weddingId);
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error creating wedding", error);
     }

@@ -1,3 +1,4 @@
+import AturcaraForm from '../components/form/AturcaraForm';
 import EventForm from '../components/form/EventForm'
 import { useState, useEffect } from 'react'
 // import { ToastContainer, toast } from 'react-toastify';
@@ -16,7 +17,7 @@ const CreateWedding = ({setAuth}) => {
       })
       
       const data = await response.json()
-      console.log(data)
+      console.log("test", data)
       setName(data.username)
     } catch (error) {
       console.error(error.message)
@@ -38,8 +39,9 @@ const CreateWedding = ({setAuth}) => {
   return (
     <div className='d-flex flex-column align-items-center w-100 py-5 px-3' style={{minHeight:"95vh"}}>
         <h1>Welcome {name}!</h1>
-        <h2>Create your own wedding RSVP!</h2>
+        <h2 className='text-center'>Let's Personalize Your Wedding RSVP Page</h2>
         <EventForm />
+        <AturcaraForm />
         {/* <ToastContainer /> */}
         <button className='button' onClick={e=>logout(e)}>Logout</button>
     </div>

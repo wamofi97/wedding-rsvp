@@ -19,10 +19,21 @@ const AturcaraForm = () => {
     setActivities(values);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Form(aturcara):', activities);
+    // console.log('Submitted Form(aturcara):', activities);
     // Handle form submission
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/programs`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          token: localStorage.token
+      },
+      body: JSON.stringify({ activities }),
+    });
+    const data = await response.json()
+
+    console.log(data)
   };
 
   return (
@@ -79,5 +90,8 @@ const AturcaraForm = () => {
     
   );
 };
+
+
+
 
 export default AturcaraForm;
