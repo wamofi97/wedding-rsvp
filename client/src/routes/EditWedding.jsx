@@ -109,7 +109,7 @@ const EditWedding = () => {
     }
   }
   return (
-        <div className='d-flex flex-column w-100'>
+        <div className='d-flex flex-column w-100 py-5 px-3' style={{minHeight:"95vh"}}>
             <h2 className="">Event Details</h2>
             <form onSubmit={handleSubmit} >
                 <label htmlFor="weddingTitle">Wedding Title</label>

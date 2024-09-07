@@ -39,7 +39,7 @@ const Login = ({setAuth}) => {
   }
 
   return (
-    <div className='w-100 pt-5 text-center' style={{height: "100vh"}}>
+    <div className='w-100  text-center py-5 px-3' style={{minHeight:"95vh"}}>
       <h4>WELCOME BACK TO</h4>
       <h5>walimatulRSVP</h5>
       <p className='ps'>Start creating your dream wedding RSVP page today.</p>

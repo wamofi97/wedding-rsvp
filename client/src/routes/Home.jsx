@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
-    <div className='mt-5 d-flex flex-column text-center w-100 vh-100'>
+    <div className='d-flex flex-column text-center py-5 px-3 w-100' style={{minHeight:"93vh"}}>
         <h4>walimatulRSVP</h4>
         <h2 className='my-4'>Create perfect Wedding RSVP</h2>
         <p>Planning your big day? Let us help you make it unforgettable. Create a beautiful and personalized wedding RSVP page that captures the essence of your special day.</p>

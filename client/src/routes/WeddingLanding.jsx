@@ -32,7 +32,7 @@ const WeddingLanding = () => {
   }
   
   return (
-    <div className='w-100'>
+    <div className='w-100 py-5 px-3'>
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} onClose={closeModal} />
         {!isModalOpen && (
         <>

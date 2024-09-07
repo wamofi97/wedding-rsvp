@@ -62,7 +62,7 @@ const Dashboard = ({setAuth}) => {
   },[name])
 
   return (
-    <div className='d-flex flex-column align-items-center w-100 py-5 vh-100'>
+    <div className='d-flex flex-column align-items-center w-100 py-5 px-3' style={{minHeight:"95vh"}}>
         <h4>Dashboard</h4>
         <p className='pr'>Congratulations <strong>{name}</strong>! Your personalized wedding RSVP page is ready. From here, you can manage every detail of your special day. </p>
 

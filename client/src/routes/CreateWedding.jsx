@@ -36,7 +36,7 @@ const CreateWedding = ({setAuth}) => {
   },[])
 
   return (
-    <div className='d-flex flex-column align-items-center w-100'>
+    <div className='d-flex flex-column align-items-center w-100 py-5 px-3' style={{minHeight:"95vh"}}>
         <h1>Welcome {name}!</h1>
         <h2>Create your own wedding RSVP!</h2>
         <EventForm />
