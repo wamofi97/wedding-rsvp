@@ -1,28 +1,20 @@
+import {  useEffect, useState } from "react"
 
-const Aturcara = () => {
-  return (
+const Aturcara = ({program}) => {
+    
+    return (
     <div className='d-flex flex-column align-items-center w-100'>
         <h2>ATURCARA</h2>
-        <table>
-            <tbody>
-                <tr>
-                    <td>11.30 AM</td>
-                    <td>Ketibaan Tetamu Jemputan</td>
-                </tr>
-                <tr>
-                    <td>1.00 PM</td>
-                    <td>Ketibaan Pengantin</td>
-                </tr>
-                <tr>
-                    <td>2.00 PM</td>
-                    <td>Sesi Fotografi</td>
-                </tr>
-                <tr>
-                    <td>4.30 PM</td>
-                    <td>Majlis bersurai </td>
-                </tr>
-            </tbody>
-        </table>
+            {program &&
+                program.programs.map((program) => {
+                return (
+                    <div key={program.activity} className="d-flex justify-content-start w-100">
+                        <p className="px-4">{program.time}</p>
+                        <p className="px-2">{program.activity}</p>
+                    </div>
+                )})
+            }
+
         <hr className='mt-5 w-100' style={{ height: '2px', backgroundColor: 'black' }} />
     </div>
   )

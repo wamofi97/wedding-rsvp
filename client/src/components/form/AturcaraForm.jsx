@@ -1,45 +1,35 @@
 import { useState } from 'react';
 
-const AturcaraForm = () => {
-  const [activities, setActivities] = useState([{ time: '', activity: '' }]);
+const AturcaraForm = ({ formData, setFormData }) => {
 
   const handleAddActivities = () => {
-    setActivities([...activities, { time: '', activity: '' }]);
+    setFormData(prevData => ({
+      ...prevData,
+      program: [...prevData.program, { time: '', activity: '' }]
+    }));
   };
 
   const handleRemoveActivities = (index) => {
-    const values = [...activities];
-    values.splice(index, 1);
-    setActivities(values);
+    setFormData(prevData => ({
+      ...prevData,
+      program: prevData.program.filter((activity, i) => i !== index)
+    }));
   };
 
   const handleInputChange = (index, e) => {
-    const values = [...activities];
-    values[index][e.target.name] = e.target.value;
-    setActivities(values);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log('Submitted Form(aturcara):', activities);
-    // Handle form submission
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/programs`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          token: localStorage.token
-      },
-      body: JSON.stringify({ activities }),
-    });
-    const data = await response.json()
-
-    console.log(data)
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      program: prevData.program.map((item, i) => 
+        i === index ? { ...item, [name]: value } : item
+      )
+    }));
   };
 
   return (
     <div className='d-flex flex-column align-items-center w-100'>
         <h2>Aturcara</h2>
-        <form onSubmit={handleSubmit} className='w-100'>
+        <form className='w-100'>
             <table className='w-100'>
               <thead>
                 <tr>
@@ -50,7 +40,7 @@ const AturcaraForm = () => {
               </thead>
 
               <tbody>
-                {activities.map((activity, index) => (
+                {formData.program.map((activity, index) => (
                   <tr key={index}>
                     <td>
                       <input
@@ -76,7 +66,7 @@ const AturcaraForm = () => {
                     </td>
                     <td>
                       <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
-                      {activities.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
+                      {formData.program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
                       }
                     </td>
                   </tr>

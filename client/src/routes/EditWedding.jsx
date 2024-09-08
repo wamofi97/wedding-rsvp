@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import AturcaraForm from '../components/form/AturcaraForm'
-import EventForm from "../components/form/EventForm";
+// import AturcaraForm from '../components/form/AturcaraForm'
+// import EventForm from "../components/form/EventForm";
 
 const EditWedding = () => {
   const { id } = useParams();
@@ -16,18 +16,11 @@ const EditWedding = () => {
     googlemapcode: "",
     date: "",
     time: "",
+    program: [{ time: '', activity: '' }]
   })
 
   const {
-    wedding_title, 
-    father_name, 
-    mother_name, 
-    bride_name, 
-    groom_name, 
-    location, 
-    googlemapcode, 
-    date, 
-    time } = inputs
+    wedding_title, father_name,  mother_name, bride_name, groom_name, location, googlemapcode, date, time, program } = inputs
 
   const fetchData = async () => {
     try {
@@ -38,16 +31,25 @@ const EditWedding = () => {
         }
       })
       
-      const data = await response.json()
-      const datePart = data.date.split('T')[0];
-      console.log("data", data)
+      const eventData = await response.json()
+      const datePart = eventData.date.split('T')[0];
+      console.log("data", eventData)
+
+      const programResponse = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/programs`, {
+        method: "GET",
+        headers: {
+          token: localStorage.token
+        }
+      })
+      
+      const programData = await programResponse.json()
+      console.log(programData)
       setInputs((prevInputs) => ({
         ...prevInputs, 
-        ...data, 
-        date : datePart
+        ...eventData, 
+        date : datePart,
+        program : programData.programs
       }))
-      console.log("this is inputs", inputs)
-      
     } catch (error) {
       console.error(error.message)
     }
@@ -56,6 +58,30 @@ const EditWedding = () => {
   useEffect(() => {
     fetchData()
   },[])
+
+  const handleAddActivities = () => {
+    setInputs(prevInputs => ({
+      ...prevInputs,
+      program: [...prevInputs.program, { time: '', activity: '' }]
+    }));
+  };
+
+  const handleRemoveActivities = (index) => {
+    setInputs(prevInputs => ({
+      ...prevInputs,
+      program: prevInputs.program.filter((activity, i) => i !== index)
+    }));
+  };
+
+  const handleInputChange = (index, e) => {
+    const { name, value } = e.target;
+    setInputs(prevInputs => ({
+      ...prevInputs,
+      program: prevInputs.program.map((item, i) => 
+        i === index ? { ...item, [name]: value } : item
+      )
+    }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,7 +106,7 @@ const EditWedding = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/edit`, {
+        const eventResponse = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/edit`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,9 +125,20 @@ const EditWedding = () => {
             })
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            console.log('Wedding updated: ', data);
+        const programResponse = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/programs/edit`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.token
+            },
+            body: JSON.stringify({program})
+        });
+
+        if (programResponse.ok && eventResponse.ok) {
+            const eventData = await eventResponse.json();
+            const programData = await programResponse.json();
+            console.log('Wedding updated: ', eventData);
+            console.log('Program updated: ', programData);
             navigate("/dashboard")
         }
     } catch (error) {
@@ -143,9 +180,57 @@ const EditWedding = () => {
             
                 <button type="submit" className="btn btn-success">Save</button>
             </form>
+
+            <h2 className="">Aturcara</h2>
+            <form>
+
+                <table className='w-100'>
+              <thead>
+                <tr>
+                    <th style={{width: "20%"}}>Masa</th>
+                    <th style={{width: "50%"}}>Aktiviti</th>
+                    <th style={{width: "20%"}}></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {program.map((activity, index) => (
+                  <tr key={index}>
+                    <td>
+                      <input
+                        type="time"
+                        name="time"
+                        value={activity.time}
+                        onChange={(e) => handleInputChange(index, e)}
+                        placeholder='Masa'
+                        required
+                        className='form-control'
+                      />
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        name="activity"
+                        value={activity.activity}
+                        onChange={(e) => handleInputChange(index, e)}
+                        placeholder="Enter activity"
+                        required
+                        className='form-control'
+                      />
+                    </td>
+                    <td>
+                      <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
+                      {program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
+                      }
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </form>
             
           
-          <AturcaraForm />
+          {/* <AturcaraForm /> */}
       </div>
   )
 }

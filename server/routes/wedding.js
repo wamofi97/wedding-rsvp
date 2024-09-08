@@ -79,18 +79,20 @@ router.put("/:id/edit/", authorization, async(req,res) =>{
     }
 });
 
+//create programs
 router.post("/programs", authorization, async (req, res) => {
-    const { activities } = req.body;  // Make sure activities is an object
-    console.log('Received activities:', activities);
-
+    const { program } = req.body; 
     try {
         // Insert the activities directly as a JSON object into the JSONB column
         const result = await pool.query(
             "INSERT INTO programs (user_id, programs) VALUES ($1, $2) RETURNING *",
-            [req.user, JSON.stringify(activities)]  // Pass the object directly, not stringified
+            [req.user, JSON.stringify(program)]  // Pass the object directly, not stringified
         );
 
         const programData = result.rows[0].programs;
+        if(programData){
+            await pool.query("UPDATE programs SET wedding_id = (SELECT id FROM weddings WHERE user_id = $1) WHERE user_id = $2 ", [req.user, req.user])
+        }
         res.status(201).json({ programData });
     } catch (error) {
         console.error('Error creating program:', error);
@@ -98,5 +100,39 @@ router.post("/programs", authorization, async (req, res) => {
     }
 });
 
+//get programs
+router.get("/:id/programs", async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const result = await pool.query("SELECT * from programs where wedding_id = $1",[id]
+        );
+        const programData = result.rows[0];
+        res.status(200).json( programData );
+    } catch (error) {
+        console.error('Error getting program', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+router.put("/:id/programs/edit", authorization, async(req,res) =>{
+    const id = req.params.id;
+    const { program } = req.body;
+    console.log(program)
+    console.log(id)
+    try {
+        const result = await pool.query("UPDATE programs SET programs = $1, updated_at = CURRENT_TIMESTAMP WHERE wedding_id = $2 returning *", [JSON.stringify(program), id]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'Wedding not found or user not authorized' });
+        }
+
+        const programData = result.rows[0];
+        
+        res.status(200).json( programData );
+    } catch (error) {
+        console.error('Error updating program', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+});
 
 module.exports = router

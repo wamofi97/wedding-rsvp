@@ -39,6 +39,7 @@ CREATE TABLE weddings (
 CREATE TABLE programs (
     id SERIAL PRIMARY KEY,
     user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
+    wedding_id UUID REFERENCES weddings(id) ON DELETE CASCADE,  
     programs JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -46,7 +47,8 @@ CREATE TABLE programs (
 
 CREATE TABLE contacts (
     id SERIAL PRIMARY KEY,
-    user_id UUID REFERENCES users(user_id) ON DELETE CASCADE, 
+    user_id UUID REFERENCES users(user_id) ON DELETE CASCADE,
+    wedding_id UUID REFERENCES weddings(id) ON DELETE CASCADE, 
     contacts JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -54,7 +56,7 @@ CREATE TABLE contacts (
 
 CREATE TABLE rsvps (
     id SERIAL PRIMARY KEY,
-    wedding_id INT REFERENCES weddings(id) ON DELETE CASCADE, -- Foreign key linking to the weddings table
+    wedding_id INT REFERENCES weddings(id) ON DELETE CASCADE, 
     guest_name VARCHAR(100) NOT NULL,
     email VARCHAR(150),
     response BOOLEAN NOT NULL,

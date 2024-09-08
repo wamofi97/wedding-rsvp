@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Contact = () => {
   return (
     <div className='d-flex flex-column align-items-center w-100'>
@@ -28,8 +26,7 @@ const Contact = () => {
             </div>
         </div>
 
-        <p>Semoga dengan kehadiran serta iringan doa Y.B. / Y.Bhg. Tan Sri / Puan Sri / Datuk / Dato’ / Datin / Tuan / Puan pastinya akan memeriahkan lagi majlis ini dan diberkati Allah S.W.T.</p>
-        <p>Terima kasih</p>
+        <p>Semoga dengan kehadiran anda dapat memeriahkan lagi majlis kami.</p>
     </div>
   )
 }

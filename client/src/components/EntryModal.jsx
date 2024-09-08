@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import backgroundImage from '../assets/modalbackground.png';
 
-const EntryModal = ({weddingData, isOpen, onClose }) => {
+const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
   const [formattedDate, setFormattedDate] =  useState("")
   const [groomName, setGroomName] = useState("")
   const [brideName, setBrideName] = useState("")
@@ -21,6 +21,9 @@ const EntryModal = ({weddingData, isOpen, onClose }) => {
     },[weddingData])
   if (!isOpen) return null;
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
 
   return (
       <div className="modal-content d-flex flex-column justify-content-center" style={{
@@ -39,19 +42,10 @@ const EntryModal = ({weddingData, isOpen, onClose }) => {
           <h5 className="names">{brideName}</h5>
           <h6>{formattedDate}</h6>
         </div>
-      
-        {/* <h6 className="bilbo-swash-caps-regular">Walimatul Urus</h6>
-        <h6 style={{fontSize:'20px'}}>MAJLIS PERKAHWINAN</h6>
-        <div className="my-5">
-          <h5 className="names">{weddingData.groom_name.firstName}</h5>
-          <h3 className='mt-2'>&</h3>
-          <h5 className="names">{weddingData.bride_name.lastName}</h5>
-          <h6>{formattedDate}</h6>
-        </div> */}
         
         <p className="quote">“Dan kami menciptakan kamu secara berpasang-pasangan”</p>
         <p className="quote">-- Surah An-Naba 78:8 --</p>
-        <button className='button btn-primary' style={{margin: '0 auto'}} onClick={onClose}>Enter</button>
+        <button className='button btn-primary' style={{margin: '0 auto'}} onClick={closeModal}>Enter</button>
       </div>
   );
 };

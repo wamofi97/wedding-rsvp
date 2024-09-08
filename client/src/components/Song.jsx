@@ -6,7 +6,7 @@ const Song = () => {
     
     useEffect(() => {
         const audio = audioRef.current;
-        audio.volume = 1; 
+        audio.volume = 0; 
       }, []);
 
     const togglePlay = () => {
