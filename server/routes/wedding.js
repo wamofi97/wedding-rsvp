@@ -117,8 +117,6 @@ router.get("/:id/programs", async(req,res) =>{
 router.put("/:id/programs/edit", authorization, async(req,res) =>{
     const id = req.params.id;
     const { program } = req.body;
-    console.log(program)
-    console.log(id)
     try {
         const result = await pool.query("UPDATE programs SET programs = $1, updated_at = CURRENT_TIMESTAMP WHERE wedding_id = $2 returning *", [JSON.stringify(program), id]);
 

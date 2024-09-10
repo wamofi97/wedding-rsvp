@@ -1,9 +1,8 @@
 import './App.css'
-import {BrowserRouter as Router, Routes,Route, Navigate} from "react-router-dom"
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 import { useState,useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './routes/Home';
 import Register from './routes/Register';
 import Login from './routes/Login';
@@ -12,6 +11,7 @@ import CreateWedding from './routes/CreateWedding';
 import WeddingLanding from './routes/WeddingLanding';
 import EditWedding from './routes/EditWedding';
 import NotFoundPage from './routes/NotFoundPage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
   })
 
   return (
-    <div className='container d-flex flex-column align-items-center' style={{ maxWidth: '700px'}}>
+    <div className='container mx-auto px-8 pt-8 pb-4' style={{ maxWidth: '800px', minHeight: '100vh'}}>
       <Router>
         <Routes >
           <Route exact path="/" element={<Home />}/>
@@ -51,9 +51,11 @@ function App() {
           <Route path="/wedding/:id/edit" element={<EditWedding />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer/>
       </Router>
-      <p className='ps'>© 2024. Made with <span className='love'>❤</span> by wamofi.dev</p>
+      
       <ToastContainer/>   
+      
     </div>
   )
 }

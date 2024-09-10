@@ -1,6 +1,6 @@
-hr{
-    display: block
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .love{
     color:rgb(199, 116, 130);
@@ -12,8 +12,18 @@ hr{
     transform: scale(1.4);
 }
 
+body{
+  color: #001F3F;
+}
+
+.subheading{
+  color: #D9B700;
+}
+
 h1,h2,h3,h4,h5,h6{
     font-family: 'Bespoke Serif', serif;
+    color: #001F3F;
+    font-weight: bold;
  }
 
 h1{
@@ -62,7 +72,7 @@ p, .pr, .ps{
 
 .linkpage{
     text-decoration: none;
-    color: black;
+    color: #001F3F;
 }
 
 .linkyellow{
@@ -74,20 +84,20 @@ p, .pr, .ps{
 }
 
 .button{
-    margin: 16px 8px;
+    margin: 8px 0;
     border-radius: 20px;
     border: none;
     color: #001F3F;
-    font-size: 15px;
+    font-size: 1em;
     font-weight: bold;
     font-family: 'Bespoke Serif', serif; 
     letter-spacing: 0.1rem;
-    padding: 8px 16px;
+    padding: 0.5em 1em;
 }
 
 .btn-primary{
     background-color: #FFD697;
-    color: #001F3F;
+    color: hsl(210, 100%, 12%);
 }
 
 .btn-primary:hover{
@@ -103,14 +113,64 @@ p, .pr, .ps{
     background-color: #D2D2D2;
 }
 
+.btn-tertiary{
+  color: #800020;
+  border: solid 2px #800020;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.btn-tertiary:hover{
+  color:  #c00232;
+  border: solid 2px #c00232
+}
+
+.btn-add{
+  color: #001F3F;
+  border: solid 2px #001F3F;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 20px;
+}
+
+.btn-add:hover{
+  color:  #188802;
+  border: solid 2px #188802
+}
+
+.btn-remove{
+  color: #001F3F;
+  border: solid 2px #001F3F;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 50%;
+  font-size: 3em;
+  line-height: 1px;
+  height: 38px;
+  width: 38px;
+  padding: 0px 24px 6px 8px ;
+}
+
+.btn-remove:hover{
+  color:  #800020;
+  border: solid 2px #800020
+}
+
 span{
     font-weight: bold;
+}
+
+input{
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px !important;
 }
 
 input::placeholder {
     font-family: 'Montserrat', sans-serif !important;
     font-size: 11px !important;
   }
+
+.form-bg{
+  background-color: #FFF8D4
+}
 
 .quote{
     font-family: 'Montserrat', sans-serif;

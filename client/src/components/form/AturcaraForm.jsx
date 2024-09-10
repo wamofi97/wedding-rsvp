@@ -27,54 +27,45 @@ const AturcaraForm = ({ formData, setFormData }) => {
   };
 
   return (
-    <div className='d-flex flex-column align-items-center w-100'>
-        <h2>Aturcara</h2>
-        <form className='w-100'>
-            <table className='w-100'>
-              <thead>
-                <tr>
-                    <th style={{width: "20%"}}>Masa</th>
-                    <th style={{width: "50%"}}>Aktiviti</th>
-                    <th style={{width: "20%"}}></th>
-                </tr>
-              </thead>
-
-              <tbody>
+    <div className='w-full'>
+        <h5 className="mb-2">Aturcara</h5>
+        <form className='w-full'>
+                <div className='w-full'>
+                    <label className='text-start mr-24 '>Masa</label>
+                    <label className='text-start'>Aktiviti</label>
+                    <label ></label>
+                </div>
+              
                 {formData.program.map((activity, index) => (
-                  <tr key={index}>
-                    <td>
+                <div key={index}>
+                    <div className='flex gap-1 w-full'>
                       <input
-                        type="time"
-                        name="time"
-                        value={activity.time}
-                        onChange={(e) => handleInputChange(index, e)}
-                        placeholder='Masa'
-                        required
-                        className='form-control'
+                          className="w-32 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"
+                          type="time"
+                          name="time"
+                          value={activity.time}
+                          onChange={(e) => handleInputChange(index, e)}
+                          placeholder='Masa'
+                          required
                       />
-                    </td>
-                    <td>
                       <input
-                        type="text"
-                        name="activity"
-                        value={activity.activity}
-                        onChange={(e) => handleInputChange(index, e)}
-                        placeholder="Enter activity"
-                        required
-                        className='form-control'
+                          className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"
+                          type="text"
+                          name="activity"
+                          value={activity.activity}
+                          onChange={(e) => handleInputChange(index, e)}
+                          placeholder="Enter activity"
+                          required
                       />
-                    </td>
-                    <td>
-                      <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
-                      {formData.program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
-                      }
-                    </td>
-                  </tr>
+                      {formData.program.length > 1 && <button type="button" className='btn-remove' onClick={() => handleRemoveActivities(index)}>-</button>
+                        }
+                    </div>
+                </div>
                 ))}
-              </tbody>
-            </table>
-        
-          <button type="submit" className='btn btn-success'>Save</button>
+
+                <div className='flex gap-1 justify-center mb-4'>
+                    <button type="button" onClick={handleAddActivities} className='btn-add w-9 h-9 leading-5' style={{fontSize:"2em"}}>+</button>
+                </div>
         </form>
     </div>
     

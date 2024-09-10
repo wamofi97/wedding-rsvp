@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 
 const Register = ({setAuth}) => {
   const [inputs, setInputs] = useState({
@@ -46,30 +47,38 @@ const Register = ({setAuth}) => {
   }
 
   return (
-    <div className='w-100 text-center py-5 px-3' style={{minHeight:"95vh"}}>
+    <div className='w-full text-center' style={{minHeight:"88vh"}}>
       <h4>WELCOME TO</h4>
-      <h5>walimatulRSVP</h5>
+      <img src={walimatulRSVPLogo} alt="walimatulRSVP logo" className='mx-auto w-44 mb-5'/>
       <p className='ps'>Start creating your dream wedding RSVP page today.</p>
-      <hr className='my-5'/>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name" className='pr mb-1 d-block text-start'>Name</label>
-        <input onChange={e => handleChange(e)} type="name" name='name' value={name} placeholder='Enter your name' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4" }}/>
+      <hr className='my-8'/>
+      <form className='w-full' onSubmit={handleSubmit}>
+        <label htmlFor="name" className='pr block mb-1 text-start'>Name</label>
+        <input 
+        className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent" 
+        onChange={e => handleChange(e)} 
+        type="name" 
+        name='name' 
+        value={name} 
+        placeholder='Enter your name' 
+        style={{border:'none',backgroundColor: "#FFF8D4" }}
+        />
 
-        <label htmlFor="email" className='pr mb-1 d-block text-start'>Email</label>
-        <input onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='Enter your email' className='form-control mb-3' style={{border:'none',backgroundColor: "#FFF8D4"}}/>
+        <label htmlFor="email" className='pr block mb-1 text-start'>Email</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent"  onChange={e => handleChange(e)} type="email" name='email' value={email} placeholder='Enter your email' style={{border:'none',backgroundColor: "#FFF8D4"}}/>
 
-        <label htmlFor="password" className='pr mb-1 d-block text-start'>Password</label>
-        <input onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='Enter your password' className='form-control mb-3' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
+        <label htmlFor="password" className='pr block mb-1 text-start'>Password</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent" onChange={e => handleChange(e)} type="password" name='password' value={password} placeholder='Enter your password' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
 
-        <label htmlFor="confirmPassword" className='pr mb-1 d-block text-start'>Reconfirm password</label>
-        <input onChange={e => handleChange(e)} type="password" name='confirmPassword' value={confirmPassword} placeholder='Re-enter your password' className='form-control mb-3' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
+        <label htmlFor="confirmPassword" className='pr block mb-1 text-start'>Reconfirm password</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent" onChange={e => handleChange(e)} type="password" name='confirmPassword' value={confirmPassword} placeholder='Re-enter your password' style={{border: error ? '1px solid red' : 'none', backgroundColor: "#FFF8D4" }}/>
 
         {error && <p className='pr' style={{ color: 'red' }}>{error}</p>}
 
-        <button type='submit' className='button btn-primary text-center'>Register</button>
+        <button type='submit' className='button btn-primary max-w-fit '>Register</button>
       </form>
       <Link to="/login" className='link linkyellow'>Already have an account? Log In</Link>
-      
+      <hr className='my-8'/>
       <ToastContainer/>
     </div>
   )

@@ -33,7 +33,7 @@ const EditWedding = () => {
       
       const eventData = await response.json()
       const datePart = eventData.date.split('T')[0];
-      console.log("data", eventData)
+      // console.log("data", eventData)
 
       const programResponse = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/programs`, {
         method: "GET",
@@ -43,7 +43,7 @@ const EditWedding = () => {
       })
       
       const programData = await programResponse.json()
-      console.log(programData)
+      // console.log(programData)
       setInputs((prevInputs) => ({
         ...prevInputs, 
         ...eventData, 
@@ -146,9 +146,9 @@ const EditWedding = () => {
     }
   }
   return (
-        <div className='d-flex flex-column w-100 py-5 px-3' style={{minHeight:"95vh"}}>
+        <div className='d-flex flex-column w-100 py-5 px-3' style={{minHeight:"94vh"}}>
             <h2 className="">Event Details</h2>
-            <form onSubmit={handleSubmit} >
+            <form >
                 <label htmlFor="weddingTitle">Wedding Title</label>
                 <input type="text" onChange={handleChange} value={wedding_title} name="wedding_title" placeholder="Title Wedding Anda" className="form-control" />
 
@@ -178,55 +178,56 @@ const EditWedding = () => {
                 <label>Masa</label>
                 <input type="time" onChange={handleChange} value={time} name="time" className="form-control" />
             
-                <button type="submit" className="btn btn-success">Save</button>
+                
             </form>
 
             <h2 className="">Aturcara</h2>
-            <form>
+            <form onSubmit={handleSubmit} >
 
                 <table className='w-100'>
-              <thead>
-                <tr>
-                    <th style={{width: "20%"}}>Masa</th>
-                    <th style={{width: "50%"}}>Aktiviti</th>
-                    <th style={{width: "20%"}}></th>
-                </tr>
-              </thead>
+                  <thead>
+                    <tr>
+                        <th style={{width: "20%"}}>Masa</th>
+                        <th style={{width: "50%"}}>Aktiviti</th>
+                        <th style={{width: "20%"}}></th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {program.map((activity, index) => (
-                  <tr key={index}>
-                    <td>
-                      <input
-                        type="time"
-                        name="time"
-                        value={activity.time}
-                        onChange={(e) => handleInputChange(index, e)}
-                        placeholder='Masa'
-                        required
-                        className='form-control'
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="activity"
-                        value={activity.activity}
-                        onChange={(e) => handleInputChange(index, e)}
-                        placeholder="Enter activity"
-                        required
-                        className='form-control'
-                      />
-                    </td>
-                    <td>
-                      <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
-                      {program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
-                      }
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  <tbody>
+                    {program.map((activity, index) => (
+                      <tr key={index}>
+                        <td>
+                          <input
+                            type="time"
+                            name="time"
+                            value={activity.time}
+                            onChange={(e) => handleInputChange(index, e)}
+                            placeholder='Masa'
+                            required
+                            className='form-control'
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="activity"
+                            value={activity.activity}
+                            onChange={(e) => handleInputChange(index, e)}
+                            placeholder="Enter activity"
+                            required
+                            className='form-control'
+                          />
+                        </td>
+                        <td>
+                          <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
+                          {program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
+                          }
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <button type="submit" className="btn btn-success">Save</button>
             </form>
             
           

@@ -42,7 +42,7 @@ const WeddingLanding = () => {
   },[])
   
   return (
-    <div className='w-100 py-5 px-3'>
+    <div className='w-100 px-3'>
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
         {!isModalOpen && (
         <>

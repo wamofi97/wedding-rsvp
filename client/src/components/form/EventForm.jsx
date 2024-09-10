@@ -28,37 +28,42 @@ const EventForm = ({ formData, setFormData }) => {
     };
 
   return (
-    <div className="d-flex flex-column align-items-center w-100">
-      <h2>Event Details</h2>
-      <form  className="w-100">
-        <label htmlFor="weddingTitle">Wedding Title</label>
-        <input type="text" onChange={handleChange} name="weddingTitle" value={eventDetails.weddingTitle || ""} placeholder="Title Wedding Anda" className="form-control" />
+    <div className="w-full">
+      <h5 className="mb-2">Event Details</h5>
+      <form className="w-full">
+        <label className='pr block mb-1 text-start' htmlFor="weddingTitle">Wedding Title</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"  type="text" onChange={handleChange} name="weddingTitle" value={eventDetails.weddingTitle || ""} placeholder="Title Wedding Anda"/>
 
-        <label htmlFor="fatherName">Nama Bapa</label>
-        <input type="text" onChange={handleChange} name="fatherName" value={eventDetails.fatherName || ""} placeholder="Nama Bapa" className="form-control" />
+        <label className='pr block mb-1 text-start' htmlFor="fatherName">Nama Bapa</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="fatherName" value={eventDetails.fatherName || ""} placeholder="Nama Bapa"/>
 
-        <label htmlFor="motherName">Nama Ibu</label>
-        <input type="text" onChange={handleChange} name="motherName" value={eventDetails.motherName || ""} placeholder="Nama Ibu" className="form-control" />
+        <label className='pr block mb-1 text-start' htmlFor="motherName">Nama Ibu</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="motherName" value={eventDetails.motherName || ""} placeholder="Nama Ibu"/>
 
-        <label>Nama Pengantin 1 (groom)</label>
-        <input type="text" onChange={handleChange} name="groom.firstName" value={eventDetails.groom?.firstName || ""} placeholder="First Name" className="form-control" />
-        <input type="text" onChange={handleChange} name="groom.lastName" value={eventDetails.groom?.lastName || ""} placeholder="Last Name" className="form-control" />
+        <label className='pr block mb-1 text-start'>Nama Pengantin 1 (groom)</label>
+        <div className="flex gap-1 flex-wrap">
+          <input className="w-50 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="groom.firstName" value={eventDetails.groom?.firstName || ""} placeholder="First Name"/>
+          <input className="w-48 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="groom.lastName" value={eventDetails.groom?.lastName || ""} placeholder="Last Name"/>
+        </div>
+        
 
-        <label>Nama Pengantin 2 (bride)</label>
-        <input type="text" onChange={handleChange} name="bride.firstName" value={eventDetails.bride?.firstName || ""} placeholder="First Name" className="form-control" />
-        <input type="text" onChange={handleChange} name="bride.lastName" value={eventDetails.bride?.lastName || ""} placeholder="Last Name" className="form-control" />
+        <label className='pr block mb-1 text-start'>Nama Pengantin 2 (bride)</label>
+        <div className="flex gap-1 flex-wrap">
+          <input className="w-50 w- px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="bride.firstName" value={eventDetails.bride?.firstName || ""} placeholder="First Name"/>
+          <input className="w-48 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="bride.lastName" value={eventDetails.bride?.lastName || ""} placeholder="Last Name"/>
+        </div>
 
-        <label>Tempat</label>
-        <input type="text" onChange={handleChange} name="location" value={eventDetails.location || ""} className="form-control" />
+        <label className='pr block mb-1 text-start'>Tempat</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="location" placeholder="Nama Tempat" value={eventDetails.location || ""}/>
 
-        <label>Link Lokasi Google Map</label>
-        <input type="text" onChange={handleChange} name="googlemapcode" value={eventDetails.googlemapcode || ""} className="form-control" />
+        <label className='pr block mb-1 text-start'>Link Lokasi Google Map</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} name="googlemapcode" placeholder="e.g https://maps.app.goo.gl/8VgTyD6YGM27vg3e9" value={eventDetails.googlemapcode || ""}/>
 
-        <label>Tarikh</label>
-        <input type="date" onChange={handleChange} name="date" value={eventDetails.date || ""} className="form-control" />
+        <label className='pr block mb-1 text-start'>Tarikh</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="date" onChange={handleChange} name="date" value={eventDetails.date || ""}/>
 
-        <label>Masa</label>
-        <input type="time" onChange={handleChange} name="time" value={eventDetails.time || ""} className="form-control" />
+        <label className='pr block mb-1 text-start'>Masa</label>
+        <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="time" onChange={handleChange} name="time" value={eventDetails.time || ""}/>
 
       </form>
     </div>

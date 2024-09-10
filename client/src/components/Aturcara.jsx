@@ -3,15 +3,17 @@ import {  useEffect, useState } from "react"
 const Aturcara = ({program}) => {
     
     return (
-    <div className='d-flex flex-column align-items-center w-100'>
-        <h2>ATURCARA</h2>
+    <div className='w-full'>
+        <h5>ATURCARA</h5>
             {program &&
                 program.programs.map((program) => {
-                return (
-                    <div key={program.activity} className="d-flex justify-content-start w-100">
-                        <p className="px-4">{program.time}</p>
-                        <p className="px-2">{program.activity}</p>
-                    </div>
+                    const separateTime = (program.time).split(":");
+                    const ampm = separateTime[0] > 11 ? "PM" : "AM"; 
+                    return (
+                        <div key={program.activity} className="d-flex justify-content-start w-100">
+                            <p className="px-4">{program.time} <strong>{ampm}</strong></p>
+                            <p className="px-2">{program.activity}</p>
+                        </div>
                 )})
             }
 

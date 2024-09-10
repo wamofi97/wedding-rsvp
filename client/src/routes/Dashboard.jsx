@@ -1,10 +1,9 @@
-// import EventForm from '../components/form/EventForm'
-// import AturcaraForm from '../components/form/AturcaraForm'
-// import ContactForm from '../components/form/ContactForm'
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
+import { Link } from 'react-router-dom';
 
 const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
@@ -63,27 +62,53 @@ const Dashboard = ({setAuth}) => {
   },[name])
 
   return (
-    <div className='d-flex flex-column align-items-center w-100 py-5 px-3' style={{minHeight:"95vh"}}>
-        <h4>Dashboard</h4>
-        <p className='pr'>Congratulations <strong>{name}</strong>! Your personalized wedding RSVP page is ready. From here, you can manage every detail of your special day. </p>
-
-        <h5>Your Wedding Page</h5>
-        <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
-        
-        <textarea className='w-100 text-center pr' style={{border: 'none', borderRadius: '8px', height:'3em', backgroundColor: '#FFF8D4'}} defaultValue={weddingPageLink}></textarea>
-        <div className='d-flex gap-3'>
-          <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
-          <button className='button btn-primary'><a href={`/wedding/${linkPage}`} target="_blank" className='linkpage'>View Page</a></button>
+    <div className='' style={{minHeight:"88vh"}}>
+        <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
+        <div className='my-6 text-center'>
+          <h4 className='mb-2'>Dashboard</h4>
+          <p className='pr'>Congratulations <span className='font-semibold'>{name}</span>! Your personalized wedding RSVP page is ready. From here, you can manage every detail of your special day. </p>
         </div>
         
-        {copySuccess && <p className='pr' style={{ color: 'green', marginTop: '10px' }}>{copySuccess}</p>}
+        <div>
+          <h5 className='mb-2'>Your Wedding Page</h5>
+          <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
+          <div className='w-100 text-center ' >
+            <p className='pr my-2 px-4 py-2' style={{border: 'none', borderRadius: '8px', backgroundColor: '#FFF8D4'}}>{weddingPageLink}</p>
+            {copySuccess && <p className='pr text-green-500'>{copySuccess}</p>}
+          </div>
+          <div className='flex justify-center gap-4'>
+            <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
+            <button className='button btn-primary'><a href={`/wedding/${linkPage}`} target="_blank" className='linkpage'>View Page</a></button>
+          </div>
+        </div>
 
-        <button onClick={e => navigateEdit(e)} className='button'>Edit wedding</button>
-        {/* <EventForm />
-        <AturcaraForm />
-        <ContactForm /> */}
+        <div>
+          <h5 className='my-4'>Manage Your Wedding</h5>
+
+          <div>
+            <p className='font-semibold mt-4'>Edit Your Details</p>
+            <p className='pr'>Need to make changes? Update your wedding details anytime by clicking the button below.</p>
+            <Link to={`/wedding/${linkPage}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>Edit wedding</button></Link>
+          </div>
+          <div>
+            <p className='font-semibold mt-4'>RSVP Management</p>
+            <p className='pr'>Keep track of who’s attending. View and manage your guest list effortlessly, and ensure everyone is ready to celebrate with you.</p>
+            <Link to="" className='link underline font-medium'><button className='button btn-tertiary underline'>Manage RSVPs</button></Link>
+          </div>
+          <div>
+            <p className='font-semibold mt-4'>Guest Wishes</p>
+            <p className='pr'>Read the warm wishes and heartfelt messages from your guests. Their words of love and support are just a click away.</p>
+            <Link to='' className='link underline font-medium'><button className='button btn-tertiary underline'>View Wishes</button></Link>
+          </div>
+          
+        </div>
+            
+        <div className='text-center my-8'>
+          <button className='button btn-secondary' onClick={e=>logout(e)}>Logout</button>
+        </div>
+      
         <ToastContainer />
-        <button className='button' onClick={e=>logout(e)}>Logout</button>
+        
     </div>
   )
 }
