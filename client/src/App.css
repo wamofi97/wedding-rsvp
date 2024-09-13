@@ -1,22 +1,4 @@
-.background-music button {
-    padding: 10px 20px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-.background-music button:hover {
-    background-color: #ffdada;
-  }
-
 .container{
    background-color: #FFFFF0;
-}
-
-input::placeholder {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11;
 }
 

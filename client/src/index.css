@@ -144,14 +144,24 @@ p, .pr, .ps{
   border-radius: 50%;
   font-size: 3em;
   line-height: 1px;
-  height: 38px;
-  width: 38px;
-  padding: 0px 24px 6px 8px ;
+  height: 30px;
+  width: 30px;
+  padding: 0px 20px 8px 4px ;
 }
 
 .btn-remove:hover{
   color:  #800020;
   border: solid 2px #800020
+}
+
+.wedding-primary{
+  color: #001F3F;
+  background-color: #D5B5BF;
+}
+
+.wedding-primary:hover{
+  color: #F5F5F5;
+  background-color: #800020;
 }
 
 span{
@@ -183,6 +193,7 @@ input::placeholder {
     font-family: "Bilbo Swash Caps", cursive;
     font-weight: 400;
     font-style: normal;
+    color: #800020;
     font-size: 23px;
     letter-spacing: 7px;
   }
@@ -190,7 +201,11 @@ input::placeholder {
   .names{
     font-family: "Cinzel", serif;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 36px;
+  }
+
+  .clash-display{
+    font-family: 'Clash Display', sans-serif;
   }
 
 

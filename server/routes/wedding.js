@@ -133,4 +133,51 @@ router.put("/:id/programs/edit", authorization, async(req,res) =>{
     }
 });
 
+// create rsvp
+router.post("/:id/rsvps", async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const { name, relationship, attendance, number } = req.body;
+        const result = await pool.query(
+            "INSERT INTO rsvps (wedding_id, guest_name, relationship, attendance, number) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [id, name, relationship, attendance, number]  
+        );
+        const rsvpData = result.rows[0];
+        res.status(200).json( rsvpData );
+    } catch (error) {
+        console.error('Error creating rsvp', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// create wishes
+router.post("/:id/wishes", async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const { name, message } = req.body;
+        const result = await pool.query(
+            "INSERT INTO wishes (wedding_id, name, message) VALUES ($1, $2, $3) RETURNING *",
+            [id, name, message]  
+        );
+        const wishesData = result.rows[0];
+        res.status(200).json( wishesData );
+    } catch (error) {
+        console.error('Error creating wishes', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// get wishes
+router.get("/:id/wishes", async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const result = await pool.query("SELECT * from wishes where wedding_id = $1 ORDER BY id DESC",[id]);
+        const wishesData = result.rows;
+        res.status(200).json( wishesData );
+    } catch (error) {
+        console.error('Error getting wishes', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 module.exports = router

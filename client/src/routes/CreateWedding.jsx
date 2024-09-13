@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import AturcaraForm from '../components/form/AturcaraForm';
 import EventForm from '../components/form/EventForm'
+import Footer from '../components/Footer'
 import { useState, useEffect } from 'react'
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 // import { ToastContainer, toast } from 'react-toastify';
@@ -111,7 +112,7 @@ const prevStep = () => {
   }
 
   return (
-    <div className='w-full' style={{minHeight:"95vh"}}>
+    <div className='w-full px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
         <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
         <h4 className='text-center my-4'>Let's Personalize Your Wedding RSVP Page</h4>
         <p className='ps text-center'>You’re just a few steps away from creating a beautiful and personalized RSVP page for your special day. Fill In the details to make It uniquely yours.</p>
@@ -127,6 +128,7 @@ const prevStep = () => {
           {step === 2 && <button type="submit" className='button btn-primary' onClick={handleSubmit}>Submit</button>}
         </div>
         <button className='button btn-secondary' onClick={e=>logout(e)}>Logout</button>
+        <Footer/>
     </div>
   )
 }

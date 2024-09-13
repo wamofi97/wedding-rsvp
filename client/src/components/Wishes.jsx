@@ -1,22 +1,32 @@
-const Wishes = () => {
+import { useState } from "react";
+import WishesForm from "./form/WishesForm";
+
+const Wishes = ({wishes, setWishes}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openUcapan = () => setIsModalOpen(true);
+  const closeUcapan = () => setIsModalOpen(false);
+
+if(wishes){
+    console.log(wishes)
+}
+
   return (
-    <div className='d-flex flex-column align-items-center text-center w-100'>
-        <h2>UCAPAN</h2>
-            <div className='wishes'>
-                <div className='wish'>
-                <p className='wisher-name text-center'>Badrul</p>
-                <p className='wish-message text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate odio fugiat autem tempora possimus sed blanditiis odit optio alias architecto.</p>
-                </div>
-                <div className='wish'>
-                <p className='wisher-name text-center'>Badrul</p>
-                <p className='wish-message text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate odio fugiat autem tempora possimus sed blanditiis odit optio alias architecto.</p>
-                </div>
-                <div className='wish'>
-                <p className='wisher-name text-center'>Badrul</p>
-                <p className='wish-message text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate odio fugiat autem tempora possimus sed blanditiis odit optio alias architecto.</p>
-                </div>
-            </div>
-            <hr className='mt-5 w-100' style={{ height: '2px',width:'500px', backgroundColor: 'black' }} />
+    <div className='w-full text-center'>
+        <h5 className='font-medium mb-4'>Ucapan</h5>
+        <div className='w-72 sm:w-96 mx-auto overflow-y-scroll mb-4' style={{maxHeight:'300px'}}>
+            {wishes && wishes.map((wish) => {
+                return (
+                    <div key={wish.id} className='mx-auto'>
+                        <p className='font-medium'>{wish.name}</p>
+                        <p className='italic font-light text-sm'>{wish.message}</p>
+                        <hr className='my-4 w-full h-1 bg-neutral-500 opacity-10 mx-auto'/>                
+                    </div>
+                )
+            })}
+        </div>
+        <button className='button wedding-primary' onClick={openUcapan}>Hantar Ucapan</button>
+        <WishesForm isOpen={isModalOpen} onClose={closeUcapan} wishes={wishes} setWishes={setWishes}/>
+        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
     </div>
   )
 }

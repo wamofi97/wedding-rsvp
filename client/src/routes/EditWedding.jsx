@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-// import AturcaraForm from '../components/form/AturcaraForm'
-// import EventForm from "../components/form/EventForm";
+import Footer from '../components/Footer'
 
 const EditWedding = () => {
   const { id } = useParams();
@@ -146,93 +145,81 @@ const EditWedding = () => {
     }
   }
   return (
-        <div className='d-flex flex-column w-100 py-5 px-3' style={{minHeight:"94vh"}}>
-            <h2 className="">Event Details</h2>
-            <form >
-                <label htmlFor="weddingTitle">Wedding Title</label>
-                <input type="text" onChange={handleChange} value={wedding_title} name="wedding_title" placeholder="Title Wedding Anda" className="form-control" />
+      <div className='w-full px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
+          <h4 className="">Event Details</h4>
+          <form >
+              <label htmlFor="weddingTitle">Wedding Title</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={wedding_title} name="wedding_title" placeholder="Title Wedding Anda"/>
 
-                <label htmlFor="fatherName">Nama Bapa</label>
-                <input type="text" onChange={handleChange} value={father_name} name="father_name" placeholder="Nama Bapa" className="form-control" />
+              <label htmlFor="fatherName">Nama Bapa</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={father_name} name="father_name" placeholder="Nama Bapa"/>
 
-                <label htmlFor="motherName">Nama Ibu</label>
-                <input type="text" onChange={handleChange} value={mother_name} name="mother_name" placeholder="Nama Ibu" className="form-control" />
+              <label htmlFor="motherName">Nama Ibu</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={mother_name} name="mother_name" placeholder="Nama Ibu"/>
 
-                <label>Nama Pengantin 1 (groom)</label>
-                <input type="text" onChange={handleChange} value={groom_name?.firstName || ""} name="groom_name.firstName" placeholder="First Name" className="form-control" />
-                <input type="text" onChange={handleChange} value={groom_name?.lastName || ""} name="groom_name.lastName" placeholder="Last Name" className="form-control" />
+              <label>Nama Pengantin 1 (groom)</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.firstName || ""} name="groom_name.firstName" placeholder="First Name"/>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.lastName || ""} name="groom_name.lastName" placeholder="Last Name"/>
 
-                <label>Nama Pengantin 2 (bride)</label>
-                <input type="text" onChange={handleChange} value={bride_name?.firstName || ""} name="bride_name.firstName" placeholder="First Name" className="form-control" />
-                <input type="text" onChange={handleChange} value={bride_name?.lastName || ""} name="bride_name.lastName" placeholder="Last Name" className="form-control" />
+              <label>Nama Pengantin 2 (bride)</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.firstName || ""} name="bride_name.firstName" placeholder="First Name"/>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.lastName || ""} name="bride_name.lastName" placeholder="Last Name"/>
 
-                <label>Tempat</label>
-                <input type="text" onChange={handleChange} value={location} name="location" className="form-control" />
+              <label>Tempat</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={location} name="location"/>
 
-                <label>Link Lokasi Google Map</label>
-                <input type="text" onChange={handleChange} value={googlemapcode} name="googlemapcode" className="form-control" />
+              <label>Link Lokasi Google Map</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={googlemapcode} name="googlemapcode"/>
 
-                <label>Tarikh</label>
-                <input type="date" onChange={handleChange} value={date} name="date" className="form-control" />
+              <label>Tarikh</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="date" onChange={handleChange} value={date} name="date"/>
 
-                <label>Masa</label>
-                <input type="time" onChange={handleChange} value={time} name="time" className="form-control" />
-            
-                
+              <label>Masa</label>
+              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="time" onChange={handleChange} value={time} name="time"/>
             </form>
 
-            <h2 className="">Aturcara</h2>
-            <form onSubmit={handleSubmit} >
+            <h4 className="">Aturcara</h4>
+            <form onSubmit={handleSubmit} className="mb-20" >
+                <div className='w-full'>
+                    <label className='text-start mr-24 '>Masa</label>
+                    <label className='text-start'>Aktiviti</label>
+                    <label ></label>
+                </div>
+              
+                {program.map((activity, index) => (
+                <div key={index}>
+                    <div className='flex gap-1 items-stretch w-full'>
+                      <input
+                          className="w-32 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"
+                          type="time"
+                          name="time"
+                          value={activity.time}
+                          onChange={(e) => handleInputChange(index, e)}
+                          placeholder='Masa'
+                          required
+                      />
+                      <input
+                          className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"
+                          type="text"
+                          name="activity"
+                          value={activity.activity}
+                          onChange={(e) => handleInputChange(index, e)}
+                          placeholder="Enter activity"
+                          required
+                      />
+                      {program.length > 1 && <button type="button" className='btn-remove' onClick={() => handleRemoveActivities(index)}>-</button>
+                        }
+                    </div>
+                </div>
+                ))}
 
-                <table className='w-100'>
-                  <thead>
-                    <tr>
-                        <th style={{width: "20%"}}>Masa</th>
-                        <th style={{width: "50%"}}>Aktiviti</th>
-                        <th style={{width: "20%"}}></th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {program.map((activity, index) => (
-                      <tr key={index}>
-                        <td>
-                          <input
-                            type="time"
-                            name="time"
-                            value={activity.time}
-                            onChange={(e) => handleInputChange(index, e)}
-                            placeholder='Masa'
-                            required
-                            className='form-control'
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            name="activity"
-                            value={activity.activity}
-                            onChange={(e) => handleInputChange(index, e)}
-                            placeholder="Enter activity"
-                            required
-                            className='form-control'
-                          />
-                        </td>
-                        <td>
-                          <button type="button" onClick={handleAddActivities} className='btn btn-info'>+</button>
-                          {program.length > 1 && <button type="button" className='btn btn-danger' onClick={() => handleRemoveActivities(index)}>-</button>
-                          }
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <button type="submit" className="btn btn-success">Save</button>
+                <div className='flex justify-center mb-4'>
+                    <button type="button" onClick={handleAddActivities} className='btn-add w-9 h-9 leading-5' style={{fontSize:"2em"}}>+</button>
+                </div> 
+                <button type="submit" className="button btn-primary mx-auto">Save</button>
             </form>
-            
-          
-          {/* <AturcaraForm /> */}
-      </div>
+            <Footer/>
+        </div>
   )
 }
 

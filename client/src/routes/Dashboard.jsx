@@ -4,13 +4,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer'
+
 
 const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
   const [linkPage, setLinkPage] = useState("")
   const [weddingPageLink, setWeddingPageLink] = useState('')
   const [copySuccess, setCopySuccess] = useState('');
-  const navigate = useNavigate();
+ 
 
   const fetchData = async () => {
     try {
@@ -29,7 +31,7 @@ const Dashboard = ({setAuth}) => {
       console.log("data:", data)
       setName(data.username)
       setLinkPage(data.id)
-      setWeddingPageLink(`${import.meta.env.VITE_API_URL}/wedding/${linkPage}`)
+      setWeddingPageLink(`${import.meta.env.VITE_DOMAIN_URL}/wedding/${linkPage}`)
     } catch (error) {
       console.error(error.message)
     }
@@ -45,10 +47,6 @@ const Dashboard = ({setAuth}) => {
       });
   };
 
-  const navigateEdit = () =>{
-    navigate(`/wedding/${linkPage}/edit`)
-  }
-
   const logout = (e) => {
     e.preventDefault()
     localStorage.removeItem("token")
@@ -62,7 +60,7 @@ const Dashboard = ({setAuth}) => {
   },[name])
 
   return (
-    <div className='' style={{minHeight:"88vh"}}>
+    <div className='px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
         <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
         <div className='my-6 text-center'>
           <h4 className='mb-2'>Dashboard</h4>
@@ -73,7 +71,7 @@ const Dashboard = ({setAuth}) => {
           <h5 className='mb-2'>Your Wedding Page</h5>
           <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
           <div className='w-100 text-center ' >
-            <p className='pr my-2 px-4 py-2' style={{border: 'none', borderRadius: '8px', backgroundColor: '#FFF8D4'}}>{weddingPageLink}</p>
+            <p className='pr my-2 px-4 py-2 overflow-scroll' style={{border: 'none', borderRadius: '8px', backgroundColor: '#FFF8D4'}}>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
             {copySuccess && <p className='pr text-green-500'>{copySuccess}</p>}
           </div>
           <div className='flex justify-center gap-4'>
@@ -93,22 +91,23 @@ const Dashboard = ({setAuth}) => {
           <div>
             <p className='font-semibold mt-4'>RSVP Management</p>
             <p className='pr'>Keep track of who’s attending. View and manage your guest list effortlessly, and ensure everyone is ready to celebrate with you.</p>
-            <Link to="" className='link underline font-medium'><button className='button btn-tertiary underline'>Manage RSVPs</button></Link>
+            <Link to="/wedding/rsvp" className='link underline font-medium'><button className='button btn-tertiary underline'>Manage RSVPs</button></Link>
           </div>
           <div>
             <p className='font-semibold mt-4'>Guest Wishes</p>
             <p className='pr'>Read the warm wishes and heartfelt messages from your guests. Their words of love and support are just a click away.</p>
-            <Link to='' className='link underline font-medium'><button className='button btn-tertiary underline'>View Wishes</button></Link>
+            <Link to={`/wedding/${linkPage}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>View Wishes</button></Link>
           </div>
           
         </div>
             
-        <div className='text-center my-8'>
+        <div className='text-center my-16'>
           <button className='button btn-secondary' onClick={e=>logout(e)}>Logout</button>
         </div>
+
       
         <ToastContainer />
-        
+        <Footer/>
     </div>
   )
 }

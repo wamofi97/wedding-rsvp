@@ -29,10 +29,30 @@ const Countdown = ({ weddingData }) => {
     }
 
   return (
-    <div className='d-flex flex-column align-items-center text-center w-100'>
-        <h2>MENGHITUNG HARI</h2>
-        <p>{timeLeft.days} days, {timeLeft.hours} hours, {timeLeft.minutes} minutes, {timeLeft.seconds} seconds</p>
-        <hr className='mt-5 w-100' style={{ height: '2px', backgroundColor: 'black' }} />
+    <div className='w-full text-center '>
+        <h5 className='font-medium mb-4'>Menghitung Hari</h5>
+        <div className='flex justify-center items-center gap-10'>
+            <div>
+                <p className='clash-display font-medium text-3xl'  >{timeLeft.days}</p>
+                <p>Hari</p>
+            </div>
+            {/* <p className='font:bold text-2xl'>,</p> */}
+            <div>
+                <p className='clash-display font-medium text-3xl' >{timeLeft.hours}</p>
+                <p>Jam</p>
+            </div>
+            {/* <p className='font:bold text-2xl'>,</p> */}
+            <div>
+                <p className='clash-display font-medium text-3xl'>{timeLeft.minutes}</p>
+                <p>Minit</p>
+            </div>
+            {/* <p className='font:bold text-2xl'>,</p> */}
+            <div>
+                <p className='clash-display font-medium text-3xl'>{timeLeft.seconds}</p>
+                <p>Saat</p>
+            </div>
+        </div>
+        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
     </div>
   )
 }

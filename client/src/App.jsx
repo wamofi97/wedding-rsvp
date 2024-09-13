@@ -12,6 +12,7 @@ import WeddingLanding from './routes/WeddingLanding';
 import EditWedding from './routes/EditWedding';
 import NotFoundPage from './routes/NotFoundPage';
 import Footer from './components/Footer';
+import ManageRSVP from './routes/ManageRSVP';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
   })
 
   return (
-    <div className='container mx-auto px-8 pt-8 pb-4' style={{ maxWidth: '800px', minHeight: '100vh'}}>
+    <div className='container mx-auto' style={{ maxWidth: '700px', minHeight: '100vh'}}>
       <Router>
         <Routes >
           <Route exact path="/" element={<Home />}/>
@@ -49,9 +50,10 @@ function App() {
           <Route path="/create-wedding" element={isAuthenticated ? (<CreateWedding setAuth={setAuth}/>) : <Navigate to="/login"/>} />
           <Route path="/wedding/:id" element={<WeddingLanding />} />
           <Route path="/wedding/:id/edit" element={<EditWedding />} />
+          <Route path="/wedding/:id/rsvp" element={<ManageRSVP />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <Footer/>
+        
       </Router>
       
       <ToastContainer/>   

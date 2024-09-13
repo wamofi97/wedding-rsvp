@@ -56,12 +56,19 @@ CREATE TABLE contacts (
 
 CREATE TABLE rsvps (
     id SERIAL PRIMARY KEY,
-    wedding_id INT REFERENCES weddings(id) ON DELETE CASCADE, 
+    wedding_id UUID REFERENCES weddings(id) ON DELETE CASCADE, 
     guest_name VARCHAR(100) NOT NULL,
-    email VARCHAR(150),
-    response BOOLEAN NOT NULL,
-    numpeople INT,
     relationship VARCHAR(100),
+    attendance BOOLEAN NOT NULL,
+    number INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE wishes (
+    id SERIAL PRIMARY KEY,
+    wedding_id UUID REFERENCES weddings(id) ON DELETE CASCADE, 
+    name VARCHAR(100) NOT NULL,
+    message VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

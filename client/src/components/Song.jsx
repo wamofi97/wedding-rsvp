@@ -1,4 +1,7 @@
 import { useRef, useState,useEffect } from 'react';
+import { MdOutlineMusicNote } from "react-icons/md";
+import { MdOutlineMusicOff } from "react-icons/md";
+
 
 const Song = () => {
     const [isPlaying, setIsPlaying] = useState(true);
@@ -6,7 +9,7 @@ const Song = () => {
     
     useEffect(() => {
         const audio = audioRef.current;
-        audio.volume = 0; 
+        audio.volume = 0.5; 
       }, []);
 
     const togglePlay = () => {
@@ -19,14 +22,30 @@ const Song = () => {
         }
     };
 
+  const styles = `
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .animate-spin-slow {
+      animation: spin-slow 4s linear infinite;
+    }
+  `;
+
   return (
-    <div className="background-music d-flex justify-content-center">
+    <div className="z-10 flex justify-end max-w-96 right-6 bottom-4" style={{position:'fixed', }}>
       <audio ref={audioRef} loop autoPlay>
         <source src="/weddingsong.mp3" type="audio/mpeg" />
       </audio>
-      <button onClick={togglePlay}>
-        {isPlaying ? 'Pause Music' : 'Play Music'}
+      <button className={` bg-indigo-200 rounded-xl opacity-50  transition-transform duration-700 ease-in-out ${isPlaying ? 'animate-spin-slow' : ''}`}  style={{fontSize:'36px'}} onClick={togglePlay}>
+        {isPlaying ? <MdOutlineMusicNote /> : <MdOutlineMusicOff /> }
       </button>
+      <style>{styles}</style>
     </div>
   );
 }

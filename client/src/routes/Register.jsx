@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
+import Footer from '../components/Footer'
+
 
 const Register = ({setAuth}) => {
   const [inputs, setInputs] = useState({
@@ -47,7 +49,7 @@ const Register = ({setAuth}) => {
   }
 
   return (
-    <div className='w-full text-center' style={{minHeight:"88vh"}}>
+    <div className='w-full text-center px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
       <h4>WELCOME TO</h4>
       <img src={walimatulRSVPLogo} alt="walimatulRSVP logo" className='mx-auto w-44 mb-5'/>
       <p className='ps'>Start creating your dream wedding RSVP page today.</p>
@@ -79,6 +81,7 @@ const Register = ({setAuth}) => {
       </form>
       <Link to="/login" className='link linkyellow'>Already have an account? Log In</Link>
       <hr className='my-8'/>
+      <Footer/>
       <ToastContainer/>
     </div>
   )
