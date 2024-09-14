@@ -144,8 +144,15 @@ const RSVPForm = ({isOpen, onClose}) => {
               <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
           </form>
         </div>
-        <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80 z-10' style={{display:'none',  height:'100%', width: '100%'}}>
-              <div className='bg-white flex flex-col items-center' style={{backgroundColor: "#f4f4f4", margin:'50vh auto', padding: '16px', width: '60%', textAlign: 'center', borderRadius:'8px', transform:'translateY(-50%)'}}>
+        <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80 z-10' style={{display:'none', height:'100%', width: '100%'}}>
+              <div className='bg-white flex flex-col items-center' style={{
+                backgroundColor: "#f4f4f4", 
+                margin:'50vh auto', 
+                padding: '16px', 
+                width: '60%', 
+                textAlign: 'center', 
+                borderRadius:'8px', 
+                transform:'translateY(-50%)'}}>
                 <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
                 <p className='my-2'>RSVP anda berjaya dihantar!</p>
                 <div className='bg-slate-200 w-64 p-2 text-start '>
