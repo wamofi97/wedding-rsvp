@@ -9,7 +9,7 @@ const Song = () => {
     
     useEffect(() => {
         const audio = audioRef.current;
-        audio.volume = 0.5; 
+        audio.volume = 0.6; 
       }, []);
 
     const togglePlay = () => {

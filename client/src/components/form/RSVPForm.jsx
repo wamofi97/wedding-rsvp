@@ -3,18 +3,22 @@ import { useParams } from 'react-router-dom';
 import { IoClose } from "react-icons/io5";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const RSVPForm = ({isOpen, onClose}) => {
     const modalRef = useRef();
 
+    const [successData, setSuccessData] = useState()
     const [rsvpData, setRSVPData] = useState({
       name: "",
       relationship: "Keluarga/Saudara",
       attendance: true,
       number: 1,
     });
-
     const {name, relationship, attendance, number} = rsvpData
+
+    const [loading, setLoading] = useState(false)
+    const successRef = useRef()
 
     const { id } = useParams();
 
@@ -35,10 +39,10 @@ const RSVPForm = ({isOpen, onClose}) => {
     }, [isOpen, onClose]);
 
     if (!isOpen) return null;
-
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        setLoading(true)
         const submissionData = {
           name,
           relationship,
@@ -53,18 +57,21 @@ const RSVPForm = ({isOpen, onClose}) => {
             },
             body: JSON.stringify(submissionData)
           })
-          const data = await response.json()
-          console.log(data)
-          setRSVPData({name: "",
+          if(response.ok){
+            successRef.current.style.display = "block"
+            setLoading(false)
+            const data = await response.json()
+            console.log(data)
+            setRSVPData({name: "",
             relationship: "Keluarga/Saudara",
             attendance: true,
             number: 1})
+            setSuccessData(data)
+          }
         } catch (error) {
           console.error(error.message)
         }
-
     }
-    
       
     const handleChange = (e) => {
       if (e.target.name === 'attendance') {
@@ -80,7 +87,7 @@ const RSVPForm = ({isOpen, onClose}) => {
           [e.target.name]: e.target.value
         }));
       }
-  };
+    };
 
       const addNumber = () => {
         if(number<20){
@@ -94,6 +101,10 @@ const RSVPForm = ({isOpen, onClose}) => {
           setRSVPData((prevRSVPData) => 
             ({...prevRSVPData, number: parseInt(number - 1)}))
         }
+      }
+
+      const ok = () =>{
+        successRef.current.style.display = "none"
       }
       
   return (
@@ -123,16 +134,31 @@ const RSVPForm = ({isOpen, onClose}) => {
                   <label className='pr block mb-1 text-start' htmlFor="number">Jumlah </label>
                   <div className='w-full flex gap-3'>
                     <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100" type="number" name="number" id="number" placeholder='Masukkan jumlah' min={1} max={20} value={number} onChange={(e) => handleChange(e)}/>
-                    <p onClick={minusNumber} className='text-xl bg-slate-100 h-9 w-12 p-2  rounded-lg'> <FaMinus /></p>
-                    <p onClick={addNumber} className='text-xl bg-slate-100 h-9 w-12 p-2  rounded-lg text'> <FaPlus />
+                    <p onClick={minusNumber} className='text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg'> <FaMinus /></p>
+                    <p onClick={addNumber} className='text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg text'> <FaPlus />
                     </p>
                   </div>
               </div>)
             }
 
-              <button type="submit" className='button wedding-primary'>Submit</button>
+              <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
           </form>
         </div>
+        <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80 z-10' style={{display:'none',  height:'100%', width: '100%'}}>
+              <div className='bg-white flex flex-col items-center' style={{backgroundColor: "#f4f4f4", margin:'50vh auto', padding: '16px', width: '60%', textAlign: 'center', borderRadius:'8px', transform:'translateY(-50%)'}}>
+                <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
+                <p className='my-2'>RSVP anda berjaya dihantar!</p>
+                <div className='bg-slate-200 w-64 p-2 text-start '>
+                  <p className='pr'>ID : {successData?.id} </p>
+                  <p className='pr'>Nama : {successData?.guest_name} </p>
+                  <p className='pr'>Hubungan : {successData?.relationship} </p>
+                  <p className='pr'>Kehadiran : {successData?.attendance ? "Hadir" : "Tidak Hadir"} </p>
+                  <p className='pr'>{successData?.attendance &&  `Jumlah Pax : ${successData?.number}`}</p>
+                </div>
+                <p className='ps'>Sila &apos;screenshot&apos; untuk simpan & maklumkan kepada pihak majlis jika ada perubahan.</p>
+                <button onClick={ok} className='button btn-secondary mt-2'>OK</button>
+              </div>
+        </div> 
     </div>
   )
 }

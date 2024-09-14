@@ -9,7 +9,6 @@ import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 
 const CreateWedding = ({setAuth}) => {
   const navigate = useNavigate()
-  const [name,setName] = useState("")
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     eventDetails : {
@@ -41,27 +40,6 @@ const nextStep = () => {
 const prevStep = () => {
   setStep(step - 1);
 };
-
-  const fetchName = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/dashboard/`, {
-        method: "GET",
-        headers: {
-          token: localStorage.token
-        }
-      })
-      
-      const data = await response.json()
-      console.log("test", data)
-      setName(data.username)
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
-
-  useEffect(() => {
-    fetchName()
-  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

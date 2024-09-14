@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
     const modalRef = useRef();
@@ -11,7 +12,10 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
     });
 
     const {name, message} = wishData
-
+    
+    const [loading, setLoading] = useState(false)
+    const successRef = useRef()
+    
     const { id } = useParams();
 
     useEffect(() => {
@@ -34,6 +38,7 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setLoading(true)
       const submissionData = {
         name,
         message
@@ -46,10 +51,14 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
           },
           body: JSON.stringify(submissionData)
         })
-        const data = await response.json()
-        console.log(data)
-        setWishes((prevWishes) => [submissionData, ...prevWishes])
-        setWishData({name: "", message: ""})
+        if(response.ok){
+          successRef.current.style.display = "block"
+          setLoading(false)
+          const data = await response.json()
+          console.log(data)
+          setWishes((prevWishes) => [submissionData, ...prevWishes])
+          setWishData({name: "", message: ""})
+        }
       } catch (error) {
         console.error(error.message)
       }
@@ -62,21 +71,33 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
         ({...prevWishData, [e.target.name]: e.target.value }))
   }
 
+    const ok = () =>{
+      successRef.current.style.display = "none"
+    }
+
   return (
     <div className='w-full fixed inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center'>
         <div ref={modalRef} className="p-6 rounded-lg shadow-lg relative max-w-md w-full" style={{backgroundColor:'#E9E9F0'}}>
           <h5>Hantar Ucapan</h5>
           <button onClick={onClose} className='absolute top-0 right-0 m-2 text-3xl'><IoClose/></button>
           <form onSubmit={handleSubmit}>
-                <label className='pr block mb-1 text-start' htmlFor="name">Nama <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100" type="text" name='name' placeholder='Nama anda' value={name} onChange={(e) => handleChange(e)}/>
-                </label>
+              <label className='pr block mb-1 text-start' htmlFor="name">Nama <input required className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100" type="text" name='name' placeholder='Nama anda' value={name} onChange={(e) => handleChange(e)}/>
+              </label>
                 
-                <label className='pr block mb-1 text-start' htmlFor="message">Ucapan</label>
-                <textarea className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100 text-sm" name='message' placeholder='Ucapan anda ' value={message} onChange={(e) => handleChange(e)}></textarea>
+              <label className='pr block mb-1 text-start' htmlFor="message">Ucapan</label>
+              <textarea required className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100 text-sm" name='message' placeholder='Ucapan anda ' value={message} onChange={(e) => handleChange(e)}></textarea>
 
-                <button type="submit" className='button wedding-primary'>Submit</button>
+              <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
           </form>
+          <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80' style={{display:'none',  height:'100%', width: '100%'}}>
+              <div className='bg-white flex flex-col items-center' style={{backgroundColor: "#f4f4f4", margin:'50vh auto', padding: '10px 0', width: '60%', textAlign: 'center', borderRadius:'8px', transform:'translateY(-50%)'}}>
+                <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
+                <p className='my-2'>Terima kasih untuk ucapan anda 😁</p>
+                <button onClick={ok} className='button btn-secondary mt-2'>OK</button>
+              </div>
+          </div>  
         </div>
+
     </div>
   )
 }

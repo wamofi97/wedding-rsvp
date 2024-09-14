@@ -13,12 +13,12 @@ if(wishes){
   return (
     <div className='w-full text-center'>
         <h5 className='font-medium mb-4'>Ucapan</h5>
-        <div className='w-72 sm:w-96 mx-auto overflow-y-scroll mb-4' style={{maxHeight:'300px'}}>
+        <div className='w-72 opac sm:w-96 mx-auto overflow-y-auto mb-4 bg' style={{maxHeight:'300px'}}>
             {wishes && wishes.map((wish) => {
                 return (
-                    <div key={wish.id} className='mx-auto'>
-                        <p className='font-medium'>{wish.name}</p>
-                        <p className='italic font-light text-sm'>{wish.message}</p>
+                    <div key={wish?.id} className='mx-auto'>
+                        <p className='font-medium'>{wish?.name}</p>
+                        <p className='italic font-light text-sm'>{wish?.message}</p>
                         <hr className='my-4 w-full h-1 bg-neutral-500 opacity-10 mx-auto'/>                
                     </div>
                 )

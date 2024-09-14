@@ -150,6 +150,19 @@ router.post("/:id/rsvps", async(req,res) =>{
     }
 });
 
+// get rsvp
+router.get("/:id/rsvps", authorization, async(req,res) =>{
+    try {
+        const id = req.params.id;
+        const result = await pool.query("SELECT * from rsvps where wedding_id = $1",[id]);
+        const rsvpData = result.rows;
+        res.status(200).json( rsvpData );
+    } catch (error) {
+        console.error('Error getting rsvp', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // create wishes
 router.post("/:id/wishes", async(req,res) =>{
     try {
