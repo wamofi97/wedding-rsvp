@@ -9,7 +9,7 @@ const Song = () => {
     
     useEffect(() => {
         const audio = audioRef.current;
-        audio.volume = 0.6; 
+        audio.volume = 0; 
       }, []);
 
     const togglePlay = () => {
@@ -38,7 +38,7 @@ const Song = () => {
   `;
 
   return (
-    <div className="z-10 flex justify-end max-w-96 right-6 bottom-4" style={{position:'fixed', }}>
+    <div className="z-10 max-w-96 right-6 bottom-4" style={{position:'fixed', }}>
       <audio ref={audioRef} loop autoPlay>
         <source src="/weddingsong.mp3" type="audio/mpeg" />
       </audio>

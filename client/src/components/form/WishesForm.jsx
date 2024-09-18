@@ -73,6 +73,7 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
 
     const ok = () =>{
       successRef.current.style.display = "none"
+      onClose()
     }
 
   return (
@@ -90,7 +91,7 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
               <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
           </form>
           <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80' style={{display:'none',  height:'100%', width: '100%'}}>
-              <div className='bg-white flex flex-col items-center' style={{backgroundColor: "#f4f4f4", margin:'50vh auto', padding: '10px 0', width: '60%', textAlign: 'center', borderRadius:'8px', transform:'translateY(-50%)'}}>
+              <div className='bg-white flex flex-col items-center' style={{backgroundColor: "#f4f4f4", margin:'50vh auto', padding: '10px 0', width: '60%', maxWidth: '450px', textAlign: 'center', borderRadius:'8px', transform:'translateY(-50%)'}}>
                 <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
                 <p className='my-2'>Terima kasih untuk ucapan anda 😁</p>
                 <button onClick={ok} className='button btn-secondary mt-2'>OK</button>

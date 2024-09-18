@@ -49,30 +49,52 @@ const EventDetails = ({weddingData}) => {
     
   },[weddingData])
 
+  const styles = `
+  @keyframes fade-up {
+    from {
+      transform: translateY(100%);
+      opacity : 0%
+    }
+    to {
+      transform: translateY(0);
+      opacity 100%
+    }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 3s ;
+  }
+
+`;
+
   return (
-    <div className='w-full text-center'>
-        <p>Assalamualaikum & Salam Sejahtera, kami</p>
-        <div className="my-4">
+    <div className='w-full text-center transition-transform animate-fade-up'>
+        <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
+        <div >
           <h2 className="names" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
           <h6 className="font-normal">&</h6>
           <h2 className="names" style={{fontSize: '20px'}}>{weddingData.mother_name}</h2>
         </div>
         
-        <p>Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan ini</p>
-        <div className="my-8">
+        <p >Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan ini</p>
+        <div>
           <h2 className="names" style={{fontSize: '24px'}}>{groom.firstName}</h2>
           <h2 className="names" style={{fontSize: '22px'}}>{groom.lastName}</h2>
           <h6>&</h6>
           <h2 className="names" style={{fontSize: '24px'}}>{bride.firstName}</h2>
           <h2 className="names" style={{fontSize: '22px'}}>{bride.lastName}</h2>
         </div>
-        <p className="pr">Pada Tarikh</p>
-        <p className="uppercase font-medium mb-4">{formattedDate}</p>
-        <p className="pr">Bertempat Di</p>
-        <p className="uppercase font-medium mb-4">{weddingData.location}</p>
-        <p className="pr">Masa</p>
-        <p className="uppercase font-medium">{formattedTime}</p>
-        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
+        <div>
+          <p className="pr">Pada Tarikh</p>
+          <p className="uppercase font-medium mb-4">{formattedDate}</p>
+          <p className="pr">Bertempat Di</p>
+          <p className="uppercase font-medium mb-4">{weddingData.location}</p>
+          <p className="pr">Masa</p>
+          <p className="uppercase font-medium">{formattedTime}</p>
+          <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
+        </div>
+        
+        <style>{styles}</style>
     </div>
   )
 }

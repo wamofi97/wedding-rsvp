@@ -7,6 +7,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 
 const RSVPForm = ({isOpen, onClose}) => {
     const modalRef = useRef();
+    const successRef = useRef()
 
     const [successData, setSuccessData] = useState()
     const [rsvpData, setRSVPData] = useState({
@@ -18,7 +19,7 @@ const RSVPForm = ({isOpen, onClose}) => {
     const {name, relationship, attendance, number} = rsvpData
 
     const [loading, setLoading] = useState(false)
-    const successRef = useRef()
+    
 
     const { id } = useParams();
 
@@ -105,6 +106,7 @@ const RSVPForm = ({isOpen, onClose}) => {
 
       const ok = () =>{
         successRef.current.style.display = "none"
+        onClose()
       }
       
   return (
@@ -149,13 +151,14 @@ const RSVPForm = ({isOpen, onClose}) => {
                 backgroundColor: "#f4f4f4", 
                 margin:'50vh auto', 
                 padding: '16px', 
-                width: '60%', 
+                width: '60%',
+                maxWidth: '450px', 
                 textAlign: 'center', 
                 borderRadius:'8px', 
                 transform:'translateY(-50%)'}}>
                 <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
                 <p className='my-2'>RSVP anda berjaya dihantar!</p>
-                <div className='bg-slate-200 w-64 p-2 text-start '>
+                <div className='bg-slate-200 sm:w-64 p-2 text-start '>
                   <p className='pr'>ID : {successData?.id} </p>
                   <p className='pr'>Nama : {successData?.guest_name} </p>
                   <p className='pr'>Hubungan : {successData?.relationship} </p>

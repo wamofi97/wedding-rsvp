@@ -7,6 +7,7 @@ const ManageRSVP = () => {
   const [rsvpData, setRsvpData] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredRsvp, setFilteredRsvp] = useState([]);
+  const [filteredKeluarga, setFilteredKeluarga] = useState([]);
   const {id} = useParams()
 
   const fetchRSVP = async () => {
@@ -33,21 +34,20 @@ const ManageRSVP = () => {
   },[])
 
   useEffect(() => {
-    if (rsvpData && rsvpData.name){
+    if (rsvpData.length > 0 ){
       const filtered = rsvpData.filter(rsvp =>
-        rsvp.name.toLowerCase().includes(searchQuery.toLowerCase())
+        rsvp?.guest_name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      console.log("yes")
       setFilteredRsvp(filtered);
     }
-  }, [searchQuery, rsvpData]);
+  }, [searchQuery]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
   return (
-    <div className='sm:px-8 px-1 pt-8 pb-4 w-fit' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#FFFFF0'}}>
+    <div className='sm:px-8 px-1 pt-8 pb-4 sm:w-full w-fit flex flex-col items-center' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#FFFFF0'}}>
       <h4 className="text-center">Manage RSVP</h4>
       <input
         type="text"
