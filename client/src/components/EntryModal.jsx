@@ -29,19 +29,19 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
   }
 
   const styles = `
-  @keyframes fade-up {
+  @keyframes entry {
     from {
       opacity : 0%;
-      transform : scale(0.8)
+      transform : translateY(-100%)
     }
     to {
       opacity 100%;
-      transform : scale(1)
+      translateY(0)
     }
   }
   
-  .animate-fade-up {
-    animation: fade-up 3s ;
+  .animate-entry {
+    animation: entry 4s ;
   }
 
 `;
@@ -52,7 +52,7 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
       }}>
-        <div className="animate-fade-up">
+        {loading ? <h6>Loading..</h6> : <div className="animate-entry">
           <div className="my-8">
             <h6 className="bilbo-swash-caps-regular ">Walimatul Urus</h6>
             <h6 className="font-normal" style={{fontSize:'20px', color: '#800020'}}>MAJLIS PERKAHWINAN</h6>
@@ -70,7 +70,8 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
           <div className="mb-20">
             <button className='button wedding-primary transition duration-300' style={{margin: '0 auto'}} onClick={closeModal}>Enter</button>
           </div>
-        </div>
+        </div>}
+        
         <Footer/>
         <style>{styles}</style>
       </div>
