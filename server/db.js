@@ -1,9 +1,7 @@
 const Pool = require("pg").Pool;
 
-const connectionString = "postgresql://postgres.jrqghukxrrylfriiplwt:BjwOQOzOdH7eFbq1@aws-0-us-east-1.pooler.supabase.com:6543/postgres"
-
 const pool = new Pool({
-    connectionString,
+    connectionString: process.env.connectionString,
     ssl: {
       rejectUnauthorized: false, // Ensure SSL is handled correctly
     },
