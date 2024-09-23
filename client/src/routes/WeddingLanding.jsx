@@ -53,12 +53,30 @@ const WeddingLanding = () => {
     fetchProgram()
     fetchWishes()
   },[])
+
+  const styles = `
+  @keyframes fade-up {
+    from {
+      opacity : 0%;
+      transform : scale(0.8)
+    }
+    to {
+      opacity 100%;
+      transform : scale(1)
+    }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 3s ;
+  }
+
+`;
   
   return (
-    <div className='w-full overflow-hidden' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#E9E9F0'}}>
+    <div className='w-full overflow-hidden' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#E9E9F0' }}>
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
         {!isModalOpen && (
-        <div className='px-4 pt-8 pb-4'>
+        <div className='px-4 pt-8 pb-4 animate-fade-up'>
           <EventDetails weddingData={weddingData} />
           <Countdown weddingData={weddingData} />
           <Aturcara program={program}/>
@@ -73,6 +91,7 @@ const WeddingLanding = () => {
           </div>
         </div>
         )}
+        <style>{styles}</style>
     </div>
   )
 }

@@ -16,6 +16,7 @@ import ManageRSVP from './routes/ManageRSVP';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean)
@@ -29,6 +30,7 @@ function App() {
       })
       const data = await response.json()
       setIsAuthenticated(data === true ? true : false)
+      setLoading(false)
     } catch (error) {
       console.error(error.message)
     }
@@ -45,7 +47,7 @@ function App() {
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/register" element={!isAuthenticated ? (<Register setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/login" element={!isAuthenticated ? (<Login setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
-          <Route exact path="/dashboard" element={isAuthenticated ? (<Dashboard setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
+          <Route exact path="/dashboard" element={isAuthenticated ? (loading ? <h3>Loading..</h3> : <Dashboard setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
           <Route path="/create-wedding" element={isAuthenticated ? (<CreateWedding setAuth={setAuth}/>) : <Navigate to="/login"/>} />
           <Route path="/wedding/:id" element={<WeddingLanding />} />
           <Route path="/wedding/:id/edit" element={<EditWedding />} />
