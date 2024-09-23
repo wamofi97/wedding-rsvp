@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     historyApiFallback: true,
   },
+  base: '/',
   build: {
     rollupOptions: {
       output: {
