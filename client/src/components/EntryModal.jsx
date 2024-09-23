@@ -41,7 +41,7 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
   }
   
   .animate-entry {
-    animation: entry 4s ;
+    animation: entry 3s ;
   }
 
 `;

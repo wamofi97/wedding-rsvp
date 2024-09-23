@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import Footer from '../components/Footer'
 
@@ -31,10 +31,10 @@ const Login = ({setAuth}) => {
       if (data.token){
         localStorage.setItem("token", data.token)
         setAuth(true)
-        toast.success("login succesfully!")
+        // toast.success("login succesfully!")
       } else{
         setAuth(false)
-        toast.error(data)
+        // toast.error(data)
       }
     } catch (error) {
       console.error(error.message)
@@ -43,6 +43,7 @@ const Login = ({setAuth}) => {
 
   return (
     <div className='w-full text-center px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
+      {/* <ToastContainer/> */}
       <h4>WELCOME BACK TO</h4>
       <img src={walimatulRSVPLogo} alt="walimatulRSVP logo" className='mx-auto w-44 mb-5'/>
       <p className='ps'>Start creating your dream wedding RSVP page today.</p>
@@ -58,7 +59,6 @@ const Login = ({setAuth}) => {
       <Link to="/register" className="link linkyellow">Do not have account yet? Lets register</Link>
       <hr className="my-8"/>
       <Footer/>
-      <ToastContainer/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { Link } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import Footer from '../components/Footer'
 
@@ -38,10 +38,10 @@ const Register = ({setAuth}) => {
       if(data.token){
         localStorage.setItem("token", data.token)
         setAuth(true)
-        toast.success("Registered succesfully!")
+        // toast.success("Registered succesfully!")
       }else{
         setAuth(false)
-        toast.error(data)
+        // toast.error(data)
       }
     } catch (error) {
       console.error(error.message)
@@ -82,7 +82,7 @@ const Register = ({setAuth}) => {
       <Link to="/login" className='link linkyellow'>Already have an account? Log In</Link>
       <hr className='my-8'/>
       <Footer/>
-      <ToastContainer/>
+      {/* <ToastContainer/> */}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer'
@@ -49,16 +49,16 @@ const Dashboard = ({setAuth}) => {
     e.preventDefault()
     localStorage.removeItem("token")
     setAuth(false)
-    toast.success("Logout successfully!")
-    console.log(localStorage.token)
+    // toast.success("Logout successfully!")
   }
 
   useEffect(() => {
     fetchData()
-  },[name])
+  },[])
 
   return (
     <div className='px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
+        {/* <ToastContainer /> */}
         <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
         <div className='my-6 text-center'>
           <h4 className='mb-2'>Dashboard</h4>
@@ -104,7 +104,7 @@ const Dashboard = ({setAuth}) => {
         </div>
 
       
-        <ToastContainer />
+        
         <Footer/>
     </div>
   )

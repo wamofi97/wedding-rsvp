@@ -1,8 +1,6 @@
 import './App.css'
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
 import { useState,useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Home from './routes/Home';
 import Register from './routes/Register';
 import Login from './routes/Login';
@@ -55,9 +53,6 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
-      
-      <ToastContainer/>   
-      
     </div>
   )
 }
