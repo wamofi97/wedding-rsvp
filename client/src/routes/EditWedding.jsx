@@ -3,14 +3,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from '../components/Footer'
 
 const EditWedding = () => {
+  const [loading, setLoading] = useState(true)
   const { id } = useParams();
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
     wedding_title: "",
     father_name: "",
     mother_name: "",
-    bride_name: { firstName: "", lastName: "" },
-    groom_name: { firstName: "", lastName: "" },
+    bride_name: { firstName: "", lastName: "", displayName: "" },
+    groom_name: { firstName: "", lastName: "", displayName: "" },
     location: "",
     googlemapcode: "",
     date: "",
@@ -49,6 +50,7 @@ const EditWedding = () => {
         date : datePart,
         program : programData.programs
       }))
+      setLoading(false)
     } catch (error) {
       console.error(error.message)
     }
@@ -147,7 +149,9 @@ const EditWedding = () => {
   return (
       <div className='w-full px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
           <h4 className="">Event Details</h4>
-          <form >
+          {loading ? <p className="text-xl">Loading..</p> : 
+          <div>
+            <form >
               <label htmlFor="weddingTitle">Wedding Title</label>
               <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={wedding_title} name="wedding_title" placeholder="Title Wedding Anda"/>
 
@@ -158,13 +162,33 @@ const EditWedding = () => {
               <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={mother_name} name="mother_name" placeholder="Nama Ibu"/>
 
               <label>Nama Pengantin 1 (groom)</label>
-              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.firstName || ""} name="groom_name.firstName" placeholder="First Name"/>
-              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.lastName || ""} name="groom_name.lastName" placeholder="Last Name"/>
-
+              <div className="flex items-center mb-1">
+                <label className="pr w-24">Display Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.displayName || ""} name="groom_name.displayName" placeholder="Display Name"/>
+              </div>
+              <div className="flex items-center mb-1">
+                <label className="pr w-24">First Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.firstName || ""} name="groom_name.firstName" placeholder="First Name"/>
+              </div>
+              <div className="flex items-center mb-3">
+                <label className="pr w-24">Last Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={groom_name?.lastName || ""} name="groom_name.lastName" placeholder="Last Name"/>
+              </div>
+              
               <label>Nama Pengantin 2 (bride)</label>
-              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.firstName || ""} name="bride_name.firstName" placeholder="First Name"/>
-              <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.lastName || ""} name="bride_name.lastName" placeholder="Last Name"/>
-
+              <div className="flex items-center mb-1">
+                <label className="pr w-24">Display Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.displayName || ""} name="bride_name.displayName" placeholder="Display Name"/>
+              </div>
+              <div className="flex items-center mb-1">
+                <label className="pr w-24">First Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.firstName || ""} name="bride_name.firstName" placeholder="First Name"/>
+              </div>
+              <div className="flex items-center mb-3">
+                <label className="pr w-24">Last Name</label>
+                <input className="grow px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={bride_name?.lastName || ""} name="bride_name.lastName" placeholder="Last Name"/>
+              </div>
+            
               <label>Tempat</label>
               <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg" type="text" onChange={handleChange} value={location} name="location"/>
 
@@ -218,6 +242,9 @@ const EditWedding = () => {
                 </div> 
                 <button type="submit" className="button btn-primary mx-auto">Save</button>
             </form>
+          </div>
+          }
+          
             <Footer/>
         </div>
   )

@@ -84,7 +84,7 @@ const Dashboard = ({setAuth}) => {
           <div>
             <p className='font-semibold mt-4'>Edit Your Details</p>
             <p className='pr'>Need to make changes? Update your wedding details anytime by clicking the button below.</p>
-            <Link to={`${weddingPageLink}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>Edit wedding</button></Link>
+            <Link to={`${weddingPageLink}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>Edit details</button></Link>
           </div>
           <div>
             <p className='font-semibold mt-4'>RSVP Management</p>

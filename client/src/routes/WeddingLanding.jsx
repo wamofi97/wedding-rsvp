@@ -58,7 +58,7 @@ const WeddingLanding = () => {
   @keyframes fade-up {
     from {
       opacity : 0%;
-      transform : translateY(50%)
+      transform : translateY(30%)
     }
     to {
       opacity 100%;
@@ -67,7 +67,7 @@ const WeddingLanding = () => {
   }
   
   .animate-fade-up {
-    animation: fade-up 4s ;
+    animation: fade-up 3s ;
   }
 
 `;

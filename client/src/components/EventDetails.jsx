@@ -50,7 +50,7 @@ const EventDetails = ({weddingData}) => {
   },[weddingData])
 
   return (
-    <div className='w-full text-center transition-transform'>
+    <div className='w-full text-center'>
         <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
         <div className="my-8">
           <h2 className="names" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>

@@ -12,9 +12,17 @@ const EventForm = ({ formData, setFormData }) => {
         const newEventDetails = { ...prevData.eventDetails };
   
         if (keys.length === 2) {
+          if (keys[1] === "firstName"){
+            newEventDetails[keys[0]] = {
+              ...newEventDetails[keys[0]],
+              [keys[1]]: value,
+              displayName: value,
+          }}
+
           newEventDetails[keys[0]] = {
             ...newEventDetails[keys[0]],
             [keys[1]]: value,
+            
           };
         } else {
           newEventDetails[name] = value;
@@ -23,6 +31,7 @@ const EventForm = ({ formData, setFormData }) => {
         return {
           ...prevData,
           eventDetails: newEventDetails,
+
         };
       });
     };

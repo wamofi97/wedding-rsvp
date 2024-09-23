@@ -18,10 +18,12 @@ const CreateWedding = ({setAuth}) => {
       bride: {
         firstName: "",
         lastName: "",
+        displayName: ""
       },
       groom: {
         firstName: "",
         lastName: "",
+        displayName: ""
       },
       location: "",
       googlemapcode: "",

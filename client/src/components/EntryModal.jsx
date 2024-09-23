@@ -17,8 +17,8 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
         const year = date.getFullYear();
         
         setFormattedDate(`${day} ${month} ${year}`);
-        setGroomName(weddingData.groom_name.firstName)
-        setBrideName(weddingData.bride_name.firstName)
+        setGroomName(weddingData.groom_name.displayName)
+        setBrideName(weddingData.bride_name.displayName)
         setLoading(false)
       }
     },[weddingData])
@@ -52,7 +52,7 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
       }}>
-        {loading ? <h6>Loading..</h6> : <div className="animate-entry">
+        {loading ? <p className="text-2xl">Loading..</p> : <div className="animate-entry">
           <div className="my-8">
             <h6 className="bilbo-swash-caps-regular ">Walimatul Urus</h6>
             <h6 className="font-normal" style={{fontSize:'20px', color: '#800020'}}>MAJLIS PERKAHWINAN</h6>
