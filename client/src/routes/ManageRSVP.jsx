@@ -7,7 +7,6 @@ const ManageRSVP = () => {
   const [rsvpData, setRsvpData] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredRsvp, setFilteredRsvp] = useState([]);
-  const [filteredKeluarga, setFilteredKeluarga] = useState([]);
   const {id} = useParams()
 
   const fetchRSVP = async () => {

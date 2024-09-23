@@ -74,7 +74,7 @@ const Dashboard = ({setAuth}) => {
           </div>
           <div className='flex justify-center gap-4'>
             <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
-            <button className='button btn-primary'><a href={`${weddingPageLink}`} target="_blank" className='linkpage'>View Page</a></button>
+            <button className='button btn-primary'><a href={`${weddingPageLink}`} target="_blank" className='linkpage' rel="noopener noreferrer">View Page</a></button>
           </div>
         </div>
 
