@@ -58,16 +58,16 @@ const WeddingLanding = () => {
   @keyframes fade-up {
     from {
       opacity : 0%;
-      transform : scale(0.8)
+      transform : translateY(50%)
     }
     to {
       opacity 100%;
-      transform : scale(1)
+      translateY(0)
     }
   }
   
   .animate-fade-up {
-    animation: fade-up 3s ;
+    animation: fade-up 4s ;
   }
 
 `;
