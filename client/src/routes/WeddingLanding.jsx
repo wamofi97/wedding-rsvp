@@ -42,9 +42,7 @@ const WeddingLanding = () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/wishes`)
       const data = await response.json()
-      console.log("receivedata: ", data)
       setWishes(data)
-      console.log(wishes)
     } catch (error) {
       console.error(error.message)
     }

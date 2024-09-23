@@ -8,7 +8,6 @@ import Footer from '../components/Footer'
 
 const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
-  const [linkPage, setLinkPage] = useState("")
   const [weddingPageLink, setWeddingPageLink] = useState('')
   const [copySuccess, setCopySuccess] = useState('');
  
@@ -28,10 +27,8 @@ const Dashboard = ({setAuth}) => {
         navigate('/create-wedding')
       }
 
-      console.log("data:", data)
       setName(data.username)
-      setLinkPage(data.id)
-      setWeddingPageLink(`${import.meta.env.VITE_DOMAIN_URL}/wedding/${linkPage}`)
+      setWeddingPageLink(`${import.meta.env.VITE_DOMAIN_URL}/wedding/${data.id}`)
     } catch (error) {
       console.error(error.message)
     }
@@ -77,7 +74,7 @@ const Dashboard = ({setAuth}) => {
           </div>
           <div className='flex justify-center gap-4'>
             <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
-            <button className='button btn-primary'><a href={`/wedding/${linkPage}`} target="_blank" className='linkpage'>View Page</a></button>
+            <button className='button btn-primary'><a href={`${weddingPageLink}`} target="_blank" className='linkpage'>View Page</a></button>
           </div>
         </div>
 
@@ -87,17 +84,17 @@ const Dashboard = ({setAuth}) => {
           <div>
             <p className='font-semibold mt-4'>Edit Your Details</p>
             <p className='pr'>Need to make changes? Update your wedding details anytime by clicking the button below.</p>
-            <Link to={`/wedding/${linkPage}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>Edit wedding</button></Link>
+            <Link to={`${weddingPageLink}/edit`} className='link underline font-medium'><button className='button btn-tertiary underline'>Edit wedding</button></Link>
           </div>
           <div>
             <p className='font-semibold mt-4'>RSVP Management</p>
             <p className='pr'>Keep track of who’s attending. View and manage your guest list effortlessly, and ensure everyone is ready to celebrate with you.</p>
-            <Link to={`/wedding/${linkPage}/rsvp`} className='link underline font-medium'><button className='button btn-tertiary underline'>Manage RSVPs</button></Link>
+            <Link to={`${weddingPageLink}/rsvp`} className='link underline font-medium'><button className='button btn-tertiary underline'>Manage RSVPs</button></Link>
           </div>
           <div>
             <p className='font-semibold mt-4'>Guest Wishes</p>
             <p className='pr'>Read the warm wishes and heartfelt messages from your guests. Their words of love and support are just a click away.</p>
-            <Link to={`/wedding/${linkPage}/edit`} className='link underline font-medium'><button disabled className='button btn-tertiary underline'>View Wishes</button></Link>
+            <Link to={`${weddingPageLink}/edit`} className='link underline font-medium'><button disabled className='button btn-tertiary underline'>View Wishes</button></Link>
           </div>
           
         </div>

@@ -70,14 +70,14 @@ const EventDetails = ({weddingData}) => {
   return (
     <div className='w-full text-center transition-transform animate-fade-up'>
         <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
-        <div >
+        <div className="my-8">
           <h2 className="names" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
           <h6 className="font-normal">&</h6>
           <h2 className="names" style={{fontSize: '20px'}}>{weddingData.mother_name}</h2>
         </div>
         
         <p >Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan ini</p>
-        <div>
+        <div className="my-8">
           <h2 className="names" style={{fontSize: '24px'}}>{groom.firstName}</h2>
           <h2 className="names" style={{fontSize: '22px'}}>{groom.lastName}</h2>
           <h6>&</h6>

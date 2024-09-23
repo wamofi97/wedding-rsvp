@@ -19,7 +19,6 @@ const RSVPForm = ({isOpen, onClose}) => {
     const {name, relationship, attendance, number} = rsvpData
 
     const [loading, setLoading] = useState(false)
-    
 
     const { id } = useParams();
 
@@ -125,20 +124,31 @@ const RSVPForm = ({isOpen, onClose}) => {
                   <option value="Jiran">Jiran</option>
               </select>
 
-              <label className='pr block mb-1 text-start' htmlFor="attendance">Kehadiran</label>
+              {/* <label className='pr block mb-1 text-start' htmlFor="attendance">Kehadiran</label>
               <select className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100 text-sm" style={{fontFamily:'Montserrat'}} name="attendance" id="attendance" value={attendance} onChange={(e) => handleChange(e)}>
                   <option value={true}>✅ Hadir</option>
                   <option value={false}>❌ Tidak hadir</option>
-              </select>
-
+              </select> */}
+              
+              <label className='pr block mb-1 text-start' htmlFor="attendance">Kehadiran</label>
+              <div className='flex'>
+                <div className='flex p-2' style={{fontFamily:'Montserrat'}}>
+                  <input className='hidden peer' type="radio" name="attendance" id="hadir" value={true} onChange={(e) => handleChange(e)} required defaultChecked/>
+                  <label className='w-full text-start px-6 py-2 cursor-pointer bg-slate-100 border-2 rounded-lg border-gray-300 peer-checked:border-blue-500' htmlFor="hadir">✅ Hadir</label>
+                </div>
+                <div className='flex p-2' style={{fontFamily:'Montserrat'}}>
+                  <input className='hidden peer' type="radio" name="attendance" id="tidakhadir" value={false} onChange={(e) => handleChange(e)}/>
+                  <label className='w-full text-start px-2 py-2 cursor-pointer bg-slate-100 border-2 rounded-lg border-gray-300 peer-checked:border-blue-500' htmlFor="tidakhadir">❌ Tidak hadir</label>
+                </div>
+              </div>
+        
               {attendance && 
               (<div >
                   <label className='pr block mb-1 text-start' htmlFor="number">Jumlah </label>
                   <div className='w-full flex gap-3'>
                     <input className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100" type="number" name="number" id="number" placeholder='Masukkan jumlah' min={1} max={20} value={number} onChange={(e) => handleChange(e)}/>
-                    <p onClick={minusNumber} className='text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg'> <FaMinus /></p>
-                    <p onClick={addNumber} className='text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg text'> <FaPlus />
-                    </p>
+                    <p onClick={minusNumber} className='cursor-pointer text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg'> <FaMinus /></p>
+                    <p onClick={addNumber} className='cursor-pointer text-lg bg-slate-100 h-9 w-10 p-2  rounded-lg text'> <FaPlus /></p>
                   </div>
               </div>)
             }
@@ -146,19 +156,11 @@ const RSVPForm = ({isOpen, onClose}) => {
               <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
           </form>
         </div>
-        <div ref={successRef} className='fixed left-0 top-0 overflow-auto bg-black bg-opacity-80 z-10' style={{display:'none', height:'100%', width: '100%'}}>
-              <div className='bg-white flex flex-col items-center' style={{
-                backgroundColor: "#f4f4f4", 
-                margin:'50vh auto', 
-                padding: '16px', 
-                width: '60%',
-                maxWidth: '450px', 
-                textAlign: 'center', 
-                borderRadius:'8px', 
-                transform:'translateY(-50%)'}}>
-                <p className='text-4xl my-2 text-green-700'><FaRegCheckCircle /></p>
+        <div ref={successRef} className='fixed left-0 top-0 bg-black bg-opacity-80 z-10' style={{display:'none', height:'100vh', width: '100%'}}>
+              <div className='bg-white flex flex-col items-center p-4 bg-[f4f4f4] rounded-xl text-center max-w-[450px] mx-auto m-[50vh] translate-y-[-50%]' >
+                <p className='text-4xl my-2 text-green-500'><FaRegCheckCircle /></p>
                 <p className='my-2'>RSVP anda berjaya dihantar!</p>
-                <div className='bg-slate-200 sm:w-64 p-2 text-start '>
+                <div className='bg-slate-200 sm:w-64 w-full p-2 text-start '>
                   <p className='pr'>ID : {successData?.id} </p>
                   <p className='pr'>Nama : {successData?.guest_name} </p>
                   <p className='pr'>Hubungan : {successData?.relationship} </p>
