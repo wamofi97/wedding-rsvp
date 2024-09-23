@@ -48,8 +48,8 @@ function App() {
           <Route exact path="/dashboard" element={isAuthenticated ? (loading ? <h3>Loading..</h3> : <Dashboard setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
           <Route path="/create-wedding" element={isAuthenticated ? (<CreateWedding setAuth={setAuth}/>) : <Navigate to="/login"/>} />
           <Route path="/wedding/:id" element={<WeddingLanding />} />
-          <Route path="/wedding/:id/edit" element={<EditWedding />} />
-          <Route path="/wedding/:id/rsvp" element={<ManageRSVP />} />
+          <Route path="/wedding/:id/edit" element={isAuthenticated ? <EditWedding /> : <Navigate to="/login"/>} />
+          <Route path="/wedding/:id/rsvp" element={isAuthenticated ? <ManageRSVP /> : <Navigate to="/login"/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
