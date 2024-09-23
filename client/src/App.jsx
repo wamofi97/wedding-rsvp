@@ -11,7 +11,6 @@ import CreateWedding from './routes/CreateWedding';
 import WeddingLanding from './routes/WeddingLanding';
 import EditWedding from './routes/EditWedding';
 import NotFoundPage from './routes/NotFoundPage';
-import Footer from './components/Footer';
 import ManageRSVP from './routes/ManageRSVP';
 
 
@@ -53,7 +52,6 @@ function App() {
           <Route path="/wedding/:id/rsvp" element={<ManageRSVP />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        
       </Router>
       
       <ToastContainer/>   
