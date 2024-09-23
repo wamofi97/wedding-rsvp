@@ -40,17 +40,19 @@ function App() {
 
   return (
     <div className='container mx-auto' style={{ maxWidth: '700px', minHeight: '100vh'}}>
+      <Router>
         <Routes >
           <Route exact path="/" element={<Home />}/>
           <Route exact path="/register" element={!isAuthenticated ? (<Register setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/login" element={!isAuthenticated ? (<Login setAuth={setAuth}/>) : <Navigate to="/dashboard"/>}/>
           <Route exact path="/dashboard" element={isAuthenticated ? (<Dashboard setAuth={setAuth}/>) : <Navigate to="/login"/>}/>
           <Route path="/create-wedding" element={isAuthenticated ? (<CreateWedding setAuth={setAuth}/>) : <Navigate to="/login"/>} />
-          <Route exact path="/wedding/:id" element={<WeddingLanding />} />
+          <Route path="/wedding/:id" element={<WeddingLanding />} />
           <Route path="/wedding/:id/edit" element={<EditWedding />} />
           <Route path="/wedding/:id/rsvp" element={<ManageRSVP />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+      </Router>
       
       <ToastContainer/>   
       
