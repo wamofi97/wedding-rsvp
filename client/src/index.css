@@ -124,35 +124,6 @@ p, .pr, .ps{
   border: solid 2px #c00232
 }
 
-/* .btn-add{
-  color: #001F3F;
-  border: solid 1px #001F3F;
-  font-family: 'Montserrat', sans-serif;
-  border-radius: 20px;
-}
-
-.btn-add:hover{
-  color:  #188802;
-  border: solid 1px #188802
-}
-
-.btn-remove{
-  color: #001F3F;
-  border: solid 1px #001F3F;
-  font-family: 'Montserrat', sans-serif;
-  border-radius: 50%;
-  font-size: 3em;
-  line-height: 1px;
-  height: 30px;
-  width: 30px;
-  padding: 0px 20px 8px 4px ;
-}
-
-.btn-remove:hover{
-  color:  #800020;
-  border: solid 1px #800020
-} */
-
 .wedding-primary{
   color: #001F3F;
   background-color: #D5B5BF;

@@ -80,13 +80,13 @@ const EventDetails = ({weddingData}) => {
         <p >Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan ini</p>
         <div className="my-8">
           <div className="overflow-hidden">
-            <h2 className="names animate-fade-up" style={{fontSize: '24px'}}>{groom.firstName}</h2>
-            <h2 className="names animate-fade-up" style={{fontSize: '22px'}}>{groom.lastName}</h2>
+            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '24px'}}>{groom.firstName}</h2>
+            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '22px'}}>{groom.lastName}</h2>
           </div>
           <h6>&</h6>
           <div className="overflow-hidden">
-            <h2 className="names animate-fade-up" style={{fontSize: '24px'}}>{bride.firstName}</h2>
-            <h2 className="names animate-fade-up" style={{fontSize: '22px'}}>{bride.lastName}</h2>
+            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '24px'}}>{bride.firstName}</h2>
+            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '22px'}}>{bride.lastName}</h2>
           </div>
         </div>
         <div>

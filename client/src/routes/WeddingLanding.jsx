@@ -9,10 +9,14 @@ import EntryModal from '../components/EntryModal';
 import Contact from '../components/Contact'
 import Wishes from '../components/Wishes'
 import walimatulRSVPLogo from "../assets/walimatulRSVPLogo.svg"
+import Spinner from '../components/Spinner'
+import backgroundImage from '../assets/modalbackground.png';
+import NotFoundPage from './NotFoundPage'
 
 const WeddingLanding = () => {
+  const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [weddingData, setWeddingData] = useState({})
+  const [weddingData, setWeddingData] = useState(null)
   const [program, setProgram] = useState({})
   const [wishes, setWishes] = useState({})
   const { id } = useParams();
@@ -20,6 +24,9 @@ const WeddingLanding = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}`)
+      if(response.ok){
+        setLoading(false)
+      }
       const data = await response.json()
       setWeddingData(data)
       document.title = "Walimatul Urus #" + data.wedding_title
@@ -74,7 +81,17 @@ const WeddingLanding = () => {
   
   return (
     <div className='w-full overflow-hidden' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#E9E9F0' }}>
-        <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+        {loading ? 
+        <div className="flex gap-2 items-center justify-center px-4 pt-8 pb-4 min-h-screen" style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center',
+        }}>
+            <Spinner />
+            <p className='text-2xl'>Loading..</p>
+        </div> : weddingData ? 
+        <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> : <NotFoundPage/> }
+        
         {!isModalOpen && (
         <div className='px-4 pt-8 pb-4 animate-fade-in'>
           <EventDetails weddingData={weddingData} />
