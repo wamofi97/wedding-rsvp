@@ -38,7 +38,7 @@ const Song = () => {
   `;
 
   return (
-    <div className="fixed left-0 top-0 z-10 w-full mx-[50%] -translate-x-[50%]" style={{ height:'100svh', maxWidth: '700px'}} >
+    <div className="fixed left-0 top-0 z-10 w-full mx-[50%] -translate-x-[50%]" style={{ height:'100dvh', maxWidth: '700px'}} >
       <div className=' p-2 sm:p-4 absolute bottom-0 right-0'>
         <audio ref={audioRef} loop autoPlay>
           <source src="/weddingsong.mp3" type="audio/mpeg" />
