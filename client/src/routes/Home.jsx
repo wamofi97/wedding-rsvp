@@ -10,7 +10,7 @@ const Home = () => {
         <div>
           <h2 className='my-8 font-bold  mx-auto leading-tight sm:w-90' >Create the Perfect Wedding RSVP</h2>
           <p className='mb-2'>Planning your big day? Let us help you make it unforgettable. Create a beautiful and personalized wedding RSVP page that captures the essence of your special day.</p>
-          <Link to="/register" className='max-w-fit '><button className='button btn-primary'>GET STARTED ✨</button></Link>
+          <Link to="/register" className='max-w-fit '><button className='button btn-primary my-2'>GET STARTED ✨</button></Link>
         </div>
         <hr className='my-8'/>
         <div>
@@ -22,7 +22,7 @@ const Home = () => {
         <hr className='my-8'/>
         <p className='ps'>Join WalimatulRSVP and start creating your custom wedding RSVP page in just a few clicks. Whether you’re planning a small intimate gathering or a grand celebration, we’ve got you covered.</p>
         <div className='flex flex-col items-center my-4 mb-28'>
-          <Link to="/register" className='max-w-fit'><button className=' button btn-primary'>GET STARTED ✨</button></Link>
+          <Link to="/register" className='max-w-fit'><button className=' button btn-primary my-2'>GET STARTED ✨</button></Link>
           <Link to="/login" className='max-w-fit link underline'>Already have an account? Log In </Link>
         </div>
         <Footer/>

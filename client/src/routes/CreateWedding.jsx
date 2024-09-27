@@ -107,7 +107,7 @@ const prevStep = () => {
           {step < 2 && <button type="button" className='button btn-primary' onClick={nextStep}>Next</button>}
           {step === 2 && <button type="submit" className='button btn-primary' onClick={handleSubmit}>Submit</button>}
         </div>
-        <button className='button btn-secondary' onClick={e=>logout(e)}>Logout</button>
+        <button className='button btn-secondary mb-16' onClick={e=>logout(e)}>Logout</button>
         <Footer/>
     </div>
   )

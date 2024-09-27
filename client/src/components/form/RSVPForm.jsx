@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
+import Spinner from '../Spinner';
 
 const RSVPForm = ({isOpen, onClose}) => {
     const modalRef = useRef();
@@ -153,7 +154,11 @@ const RSVPForm = ({isOpen, onClose}) => {
               </div>)
             }
 
-              <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
+              <button type="submit" className='button wedding-primary'>{loading ? 
+                <div className="flex items-center gap-2">
+                  <Spinner/>
+                  <p className="pr">Submitting..</p>
+                </div> : "Submit"}</button>
           </form>
         </div>
         <div ref={successRef} className='fixed left-0 top-0 bg-black bg-opacity-80 z-10' style={{display:'none', height:'100vh', width: '100%'}}>

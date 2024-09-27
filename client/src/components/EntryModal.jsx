@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import backgroundImage from '../assets/modalbackground.png';
 import Footer from "./Footer";
+import Spinner from "./Spinner";
 
 const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
   const [formattedDate, setFormattedDate] =  useState("")
@@ -52,7 +53,11 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
         backgroundSize: 'cover', 
         backgroundPosition: 'center',
       }}>
-        {loading ? <p className="text-2xl">Loading..</p> : <div className="animate-entry">
+        {loading ? 
+        <div className="flex gap-2 items-center justify-center ">
+            <Spinner />
+            <p>Loading..</p>
+          </div> : <div className="animate-entry">
           <div className="my-8">
             <h6 className="bilbo-swash-caps-regular ">Walimatul Urus</h6>
             <h6 className="font-normal" style={{fontSize:'20px', color: '#800020'}}>MAJLIS PERKAHWINAN</h6>

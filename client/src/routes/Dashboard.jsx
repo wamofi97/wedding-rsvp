@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer'
+import { Toaster, toast } from 'sonner'
 
 
 const Dashboard = ({setAuth}) => {
@@ -49,7 +50,7 @@ const Dashboard = ({setAuth}) => {
     e.preventDefault()
     localStorage.removeItem("token")
     setAuth(false)
-    // toast.success("Logout successfully!")
+    toast.success("Logout successfully!")
   }
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const Dashboard = ({setAuth}) => {
 
   return (
     <div className='px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
-        {/* <ToastContainer /> */}
+        <Toaster/>
         <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
         <div className='my-6 text-center'>
           <h4 className='mb-2'>Dashboard</h4>

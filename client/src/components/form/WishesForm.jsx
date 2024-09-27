@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { FaRegCheckCircle } from "react-icons/fa";
+import Spinner from '../Spinner';
 
 const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
     const modalRef = useRef();
@@ -88,7 +89,12 @@ const WishesForm = ({isOpen, onClose, wishes, setWishes}) => {
               <label className='pr block mb-1 text-start' htmlFor="message">Ucapan</label>
               <textarea required className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100 text-sm" name='message' placeholder='Ucapan anda ' value={message} onChange={(e) => handleChange(e)}></textarea>
               
-              <button type="submit" className='button wedding-primary'>{loading ? "Submitting.." : "Submit"}</button>
+              <button type="submit" className='button wedding-primary'>{loading ? 
+                <div className="flex items-center gap-2">
+                  <Spinner/>
+                  <p className="pr">Submitting..</p>
+                </div>
+                : "Submit"}</button>
           </form>
           <div ref={successRef} className='fixed left-0 top-0  bg-black bg-opacity-80' style={{display:'none',  height:'100vh', width: '100%'}}>
               <div className='bg-white flex flex-col items-center p-4 bg-[f4f4f4] rounded-xl text-center max-w-[450px] mx-auto m-[50vh] translate-y-[-50%]'>

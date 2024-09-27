@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from '../components/Footer'
+import { CiCirclePlus } from "react-icons/ci";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
+import Spinner from "../components/Spinner";
+import { Toaster, toast } from 'sonner'
 
 const EditWedding = () => {
   const [loading, setLoading] = useState(true)
+  const [pending, setPending] = useState(false)
   const { id } = useParams();
   const navigate = useNavigate()
   const [inputs, setInputs] = useState({
@@ -107,6 +112,7 @@ const EditWedding = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+        setPending(true)
         const eventResponse = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}/edit`, {
             method: 'PUT',
             headers: {
@@ -138,8 +144,10 @@ const EditWedding = () => {
         if (programResponse.ok && eventResponse.ok) {
             const eventData = await eventResponse.json();
             const programData = await programResponse.json();
+            setPending(false)
             console.log('Wedding updated: ', eventData);
             console.log('Program updated: ', programData);
+            toast.success("Saved successfully")
             navigate("/dashboard")
         }
     } catch (error) {
@@ -148,8 +156,13 @@ const EditWedding = () => {
   }
   return (
       <div className='w-full px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
+          <Toaster/>
           <h4 className="">Event Details</h4>
-          {loading ? <p className="text-xl">Loading..</p> : 
+          {loading ? 
+          <div className="flex justify-center items-center gap-2 my-4">
+            <Spinner/>
+            <p className="p">Loading..</p>
+          </div>  :  
           <div>
             <form >
               <label htmlFor="weddingTitle">Wedding Title</label>
@@ -212,7 +225,7 @@ const EditWedding = () => {
               
                 {program.map((activity, index) => (
                 <div key={index}>
-                    <div className='flex gap-1 items-stretch w-full'>
+                    <div className='flex gap-1 items-center w-full'>
                       <input
                           className="w-32 px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent form-bg"
                           type="time"
@@ -231,16 +244,28 @@ const EditWedding = () => {
                           placeholder="Enter activity"
                           required
                       />
-                      {program.length > 1 && <button type="button" className='btn-remove' onClick={() => handleRemoveActivities(index)}>-</button>
+                      {program.length > 1 && <button type="button" className="text-4xl -translate-y-2 hover:text-red-600 transition-colors duration-300" onClick={() => handleRemoveActivities(index)}><IoIosRemoveCircleOutline />
+                      </button>
                         }
                     </div>
                 </div>
                 ))}
 
                 <div className='flex justify-center mb-4'>
-                    <button type="button" onClick={handleAddActivities} className='btn-add w-9 h-9 leading-5' style={{fontSize:"2em"}}>+</button>
+                    <button type="button" onClick={handleAddActivities} className='text-5xl hover:text-orange-300 transition-colors duration-300'><CiCirclePlus />
+                    </button>
                 </div> 
-                <button type="submit" className="button btn-primary mx-auto">Save</button>
+                <div className='flex justify-end'>
+                    <button type='submit' className='button btn-primary ml-8'>{
+                    pending ? 
+                    <div className="flex items-center gap-2">
+                      <Spinner/>
+                      <p className="pr">Saving..</p>
+                    </div>  : 
+                    "Save" }
+                    </button>
+
+                </div>
             </form>
           </div>
           }
