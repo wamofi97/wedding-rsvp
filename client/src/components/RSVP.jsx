@@ -28,7 +28,7 @@ const RSVP = ({weddingData}) => {
 
   return (
     <div className='w-full text-center '>
-        <h5 className='font-medium mb-4'>Maklumat kehadiran</h5>
+        <h5 className='font-medium mb-4 text-rose-950'>Maklumat kehadiran</h5>
         <p className="mb-2">Sila RSVP kehadiran anda dengan menekan butang RSVP dibawah sebelum <span className="font-semibold">{threeWeeksEarlier}</span></p> 
         <button className="button wedding-primary" onClick={openRSVP}>RSVP</button>
         <RSVPForm isOpen={isModalOpen} onClose={closeRSVP} />

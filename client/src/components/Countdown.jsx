@@ -30,7 +30,7 @@ const Countdown = ({ weddingData }) => {
 
   return (
     <div className='w-full text-center '>
-        <h5 className='font-medium mb-4'>Menghitung Hari</h5>
+        <h5 className='font-medium mb-4 text-rose-950'>Menghitung Hari</h5>
         <div className='flex justify-center items-center gap-10'>
             <div>
                 <p className='clash-display font-medium text-3xl'  >{timeLeft.days}</p>

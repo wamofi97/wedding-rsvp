@@ -44,7 +44,7 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
   }`
 
   return (
-      <div className="flex flex-col text-center px-4 pt-8 pb-4 min-h-screen " style={{
+      <div className="flex flex-col text-center px-4 pt-8 pb-4 min-h-svh " style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover', 
         backgroundPosition: 'center',

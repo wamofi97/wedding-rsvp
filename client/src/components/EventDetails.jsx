@@ -50,20 +50,34 @@ const EventDetails = ({weddingData}) => {
   },[weddingData])
 
   const styles = `
-  @keyframes fade-up {
+  @keyframes fade-right {
     from {
       opacity : 0%;
-      transform : translateY(400%)
+      transform : translateX(-120%);
     }
     to {
       opacity: 100%;
-      transform : translateY(0)
+      transform : translate(0);
     }
   }
   
-  .animate-fade-up {
-    animation: fade-up 3s ;
-    
+  .animate-fade-right {
+    animation: fade-right 4s ;
+    }
+
+  @keyframes fade-left {
+    from {
+      opacity : 0%;
+      transform : translateX(120%);
+    }
+    to {
+      opacity: 100%;
+      transform : translate(0);
+    }
+  }
+  
+  .animate-fade-left {
+    animation: fade-left 4s ;
     }
 
 `;
@@ -72,21 +86,21 @@ const EventDetails = ({weddingData}) => {
     <div className='w-full text-center'>
         <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
         <div className="my-8 overflow-hidden">
-          <h2 className="names animate-fade-up" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
+          <h2 className="names text-rose-950" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
           <h6 className="font-normal">&</h6>
-          <h2 className="names animate-fade-up" style={{fontSize: '20px'}}>{weddingData.mother_name}</h2>
+          <h2 className="names text-rose-950" style={{fontSize: '20px'}}>{weddingData.mother_name}</h2>
         </div>
         
         <p >Dengan penuh rasa kesyukuran kami ingin menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan ini</p>
         <div className="my-8">
           <div className="overflow-hidden">
-            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '24px'}}>{groom.firstName}</h2>
-            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '22px'}}>{groom.lastName}</h2>
+            <h2 className="names animate-fade-right text-rose-950" style={{fontSize: '24px'}}>{groom.firstName}</h2>
+            <h2 className="names animate-fade-right text-rose-950" style={{fontSize: '22px'}}>{groom.lastName}</h2>
           </div>
-          <h6>&</h6>
+          <h6 className="font-normal">&</h6>
           <div className="overflow-hidden">
-            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '24px'}}>{bride.firstName}</h2>
-            <h2 className="names animate-fade-up text-rose-950" style={{fontSize: '22px'}}>{bride.lastName}</h2>
+            <h2 className="names animate-fade-left text-rose-950" style={{fontSize: '24px'}}>{bride.firstName}</h2>
+            <h2 className="names animate-fade-left text-rose-950" style={{fontSize: '22px'}}>{bride.lastName}</h2>
           </div>
         </div>
         <div>

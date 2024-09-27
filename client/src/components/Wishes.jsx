@@ -8,7 +8,7 @@ const Wishes = ({wishes, setWishes}) => {
 
   return (
     <div className='w-full text-center'>
-        <h5 className='font-medium mb-4'>Ucapan</h5>
+        <h5 className='font-medium mb-4 text-rose-950'>Ucapan</h5>
         <div className='w-72 opac sm:w-96 mx-auto overflow-y-auto mb-4 bg' style={{maxHeight:'300px'}}>
             {wishes && wishes.map((wish, index) => {
                 return (

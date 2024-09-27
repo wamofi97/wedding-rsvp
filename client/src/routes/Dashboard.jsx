@@ -58,7 +58,7 @@ const Dashboard = ({setAuth}) => {
   },[])
 
   return (
-    <div className='px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100vh"}}>
+    <div className='px-8 pt-8 pb-4' style={{position: 'relative', minHeight:"100svh"}}>
         <Toaster/>
         <img className='mx-auto w-20' src={walimatulRSVPLogo} alt="Walimatul RSVP Logo " />
         <div className='my-6 text-center'>

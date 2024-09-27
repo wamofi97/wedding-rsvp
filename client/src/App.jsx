@@ -39,7 +39,7 @@ function App() {
   },[])
 
   return (
-    <div className='container mx-auto' style={{ maxWidth: '700px', minHeight: '100vh'}}>
+    <div className='container mx-auto' style={{ maxWidth: '700px', minHeight: '100svh'}}>
       <Router>
         <Routes >
           <Route exact path="/" element={<Home />}/>

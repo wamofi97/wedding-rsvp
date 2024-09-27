@@ -2,7 +2,7 @@ const Aturcara = ({program}) => {
     
     return (
     <div className='w-full'>
-        <h5 className="font-medium mb-4 text-center" >Aturcara</h5>
+        <h5 className="font-medium mb-4 text-center text-rose-950" >Aturcara</h5>
         {program &&
             program.programs.map((program) => {
                 const separateTime = (program.time).split(":");
