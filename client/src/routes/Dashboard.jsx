@@ -70,8 +70,8 @@ const Dashboard = ({setAuth}) => {
           <h5 className='mb-2'>Your Wedding Page</h5>
           <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
           <div className='w-full text-center flex sm:flex-nowrap flex-wrap justify-between items-center rounded-lg gap-2 my-2' style={{backgroundColor: '#FFF8D4'}}>
-            <p className='pr overflow-y-auto p-2 flex-grow'>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
-            <button className='bg-gray-200 p-2 sm:py-4 rounded-lg hover:bg-slate-300 flex gap-1 items-center justify-center sm:w-fit w-full ' onClick={copyToClipboard} > <FaRegCopy />
+            <p className='pr overflow-y-auto p-1 flex-grow'>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
+            <button className='bg-gray-200 p-2 sm:p-3 rounded-lg hover:bg-slate-300 flex gap-1 items-center justify-center sm:w-fit w-full ' onClick={copyToClipboard} > <FaRegCopy />
             <p className='font-semibold text-sm'>Copy</p></button>
           </div>
             {copySuccess && <p className='pr text-green-500 text-center'>{copySuccess}</p>}
