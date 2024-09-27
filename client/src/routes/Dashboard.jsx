@@ -71,7 +71,7 @@ const Dashboard = ({setAuth}) => {
           <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
           <div className='w-full text-center flex justify-between items-center rounded-lg gap-2 my-2' style={{backgroundColor: '#FFF8D4'}}>
             <p className='pr p-1 overflow-y-auto '>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
-            <button className='bg-gray-200 p-3 rounded-lg hover:bg-slate-300 flex gap-1 items-center' onClick={copyToClipboard} > <FaRegCopy />
+            <button className='bg-gray-200 px-2 py-3 rounded-lg hover:bg-slate-300 flex gap-1 items-center' onClick={copyToClipboard} > <FaRegCopy />
             <p className='font-semibold text-sm'>Copy</p></button>
           </div>
             {copySuccess && <p className='pr text-green-500 text-center'>{copySuccess}</p>}
