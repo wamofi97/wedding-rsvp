@@ -5,7 +5,7 @@ import walimatulRSVPLogo from '../assets/walimatulRSVPLogo.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer'
 import { Toaster, toast } from 'sonner'
-
+import { FaRegCopy } from "react-icons/fa6";
 
 const Dashboard = ({setAuth}) => {
   const [name,setName] = useState("")
@@ -69,13 +69,14 @@ const Dashboard = ({setAuth}) => {
         <div>
           <h5 className='mb-2'>Your Wedding Page</h5>
           <p className='ps'>Share this link with your guests to invite them to your wedding. It’s as easy as copy and paste!</p>
-          <div className='w-100 text-center ' >
-            <p className='pr my-2 px-4 py-2 overflow-x-auto' style={{border: 'none', borderRadius: '8px', backgroundColor: '#FFF8D4'}}>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
-            {copySuccess && <p className='pr text-green-500'>{copySuccess}</p>}
+          <div className='w-full text-center flex justify-between items-center rounded-lg gap-2 my-2' style={{backgroundColor: '#FFF8D4'}}>
+            <p className='pr p-1 overflow-y-auto '>{weddingPageLink ? weddingPageLink : "..Loading"}</p>
+            <button className='bg-gray-200 p-3 rounded-lg hover:bg-slate-300 flex gap-1 items-center' onClick={copyToClipboard} > <FaRegCopy />
+            <p className='font-semibold text-sm'>Copy</p></button>
           </div>
-          <div className='flex justify-center gap-4'>
-            <button className='button btn-secondary' onClick={copyToClipboard} >Copy Link</button>
-            <button className='button btn-primary' onClick={() => window.open(`${weddingPageLink}`, '_blank')}>View Page</button>
+            {copySuccess && <p className='pr text-green-500 text-center'>{copySuccess}</p>}
+          <div className='flex justify-center gap-4 my-2'>
+            <a href={weddingPageLink} target='_blank'><button className='button btn-primary'>View Page</button></a>
           </div>
         </div>
 
