@@ -38,13 +38,15 @@ const Song = () => {
   `;
 
   return (
-    <div className="z-10 max-w-96 right-6 bottom-4 fixed" >
-      <audio ref={audioRef} loop autoPlay>
-        <source src="/weddingsong.mp3" type="audio/mpeg" />
-      </audio>
-      <button className={` bg-indigo-200 rounded-xl opacity-50  transition-transform duration-700 ease-in-out ${isPlaying ? 'animate-spin-slow' : ''}`}  style={{fontSize:'36px'}} onClick={togglePlay}>
-        {isPlaying ? <MdOutlineMusicNote /> : <MdOutlineMusicOff /> }
-      </button>
+    <div className="fixed left-0 top-0 z-10 w-full mx-[50%] -translate-x-[50%]" style={{ height:'100vh', maxWidth: '700px'}} >
+      <div className=' p-2 sm:p-4 absolute bottom-0 right-0'>
+        <audio ref={audioRef} loop autoPlay>
+          <source src="/weddingsong.mp3" type="audio/mpeg" />
+        </audio>
+        <button className={` bg-indigo-200 rounded-xl opacity-50  transition-transform duration-700 ease-in-out ${isPlaying ? 'animate-spin-slow' : ''}`}  style={{fontSize:'36px'}} onClick={togglePlay}>
+          {isPlaying ? <MdOutlineMusicNote /> : <MdOutlineMusicOff /> }
+        </button>
+      </div>
       <style>{styles}</style>
     </div>
   );
