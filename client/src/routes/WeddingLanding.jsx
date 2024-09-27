@@ -55,19 +55,19 @@ const WeddingLanding = () => {
   },[])
 
   const styles = `
-  @keyframes fade-up {
+  @keyframes fade-in {
     from {
       opacity : 0%;
-      transform : translateY(30%)
+      // transform : translateY(30%)
     }
     to {
       opacity 100%;
-      translateY(0)
+      // translateY(0)
     }
   }
   
-  .animate-fade-up {
-    animation: fade-up 3s ;
+  .animate-fade-in {
+    animation: fade-in 4s ;
   }
 
 `;
@@ -76,7 +76,7 @@ const WeddingLanding = () => {
     <div className='w-full overflow-hidden' style={{position: 'relative', minHeight:"100vh", backgroundColor:'#E9E9F0' }}>
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
         {!isModalOpen && (
-        <div className='px-4 pt-8 pb-4 animate-fade-up'>
+        <div className='px-4 pt-8 pb-4 animate-fade-in'>
           <EventDetails weddingData={weddingData} />
           <Countdown weddingData={weddingData} />
           <Aturcara program={program}/>
