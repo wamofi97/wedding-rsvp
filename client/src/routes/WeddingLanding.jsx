@@ -65,11 +65,9 @@ const WeddingLanding = () => {
   @keyframes fade-in {
     from {
       opacity : 0%;
-      // transform : translateY(30%)
     }
     to {
       opacity 100%;
-      // translateY(0)
     }
   }
   
@@ -77,6 +75,20 @@ const WeddingLanding = () => {
     animation: fade-in 4s ;
   }
 
+  @keyframes scroll {
+      from {
+        transform: translateX(-40vw);
+        opacity:10%
+      }
+      to {
+        transform: translate(0);
+        opacity:100%
+      }
+    }
+    
+    .animate-scroll {
+      animation: scroll 2s ;
+    }
 `;
   
   return (

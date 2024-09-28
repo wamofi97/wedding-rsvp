@@ -62,7 +62,7 @@ const EventDetails = ({weddingData}) => {
   }
   
   .animate-fade-right {
-    animation: fade-right 4s ;
+    animation: fade-right 3s ;
     }
 
   @keyframes fade-left {
@@ -77,7 +77,7 @@ const EventDetails = ({weddingData}) => {
   }
   
   .animate-fade-left {
-    animation: fade-left 4s ;
+    animation: fade-left 3s ;
     }
 
 `;

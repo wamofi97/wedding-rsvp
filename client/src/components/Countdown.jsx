@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer';
 
 const Countdown = ({ weddingData }) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(weddingData.date));
+
+    const { ref:inViewRef, inView } = useInView({threshold: 0.5, triggerOnce: true});
+    
 
     useEffect(() => {
         const weddingDate = weddingData.date;
@@ -30,23 +34,25 @@ const Countdown = ({ weddingData }) => {
 
   return (
     <div className='w-full text-center p-12 bg-opacity-10 bg-slate-400'>
-        <h5 className='font-medium mb-4 text-rose-950'>Menghitung Hari</h5>
-        <div className='flex justify-center items-center gap-4 sm:gap-10'>
-            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300' >
-                <p className='clash-display font-medium text-2xl sm:text-3xl'  >{timeLeft.days}</p>
-                <p>Hari</p>
-            </div>
-            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
-                <p className='clash-display font-medium text-2xl sm:text-3xl' >{timeLeft.hours}</p>
-                <p>Jam</p>
-            </div>
-            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
-                <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.minutes}</p>
-                <p>Minit</p>
-            </div>
-            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
-                <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.seconds}</p>
-                <p>Saat</p>
+        <div ref={inViewRef} className= {inView ? "animate-scroll" : "opacity-0"}>
+            <h5 className='font-medium mb-4 text-rose-950'>Menghitung Hari</h5>
+            <div className='flex justify-center items-center gap-4 sm:gap-10'>
+                <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300' >
+                    <p className='clash-display font-medium text-2xl sm:text-3xl'  >{timeLeft.days}</p>
+                    <p>Hari</p>
+                </div>
+                <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                    <p className='clash-display font-medium text-2xl sm:text-3xl' >{timeLeft.hours}</p>
+                    <p>Jam</p>
+                </div>
+                <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                    <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.minutes}</p>
+                    <p>Minit</p>
+                </div>
+                <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                    <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.seconds}</p>
+                    <p>Saat</p>
+                </div>
             </div>
         </div>
     </div>
