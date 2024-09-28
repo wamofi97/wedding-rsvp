@@ -7,7 +7,7 @@ const Wishes = ({wishes, setWishes}) => {
   const closeUcapan = () => setIsModalOpen(false);
 
   return (
-    <div className='w-full text-center'>
+    <div className='w-full text-center p-12'>
         <h5 className='font-medium mb-4 text-rose-950'>Ucapan</h5>
         <div className='w-72 opac sm:w-96 mx-auto overflow-y-auto mb-4 bg' style={{maxHeight:'300px'}}>
             {wishes && wishes.map((wish, index) => {
@@ -22,7 +22,6 @@ const Wishes = ({wishes, setWishes}) => {
         </div>
         <button className='button wedding-primary' onClick={openUcapan}>Hantar Ucapan</button>
         <WishesForm isOpen={isModalOpen} onClose={closeUcapan} wishes={wishes} setWishes={setWishes}/>
-        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
     </div>
   )
 }

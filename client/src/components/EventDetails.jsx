@@ -83,7 +83,7 @@ const EventDetails = ({weddingData}) => {
 `;
 
   return (
-    <div className='w-full text-center'>
+    <div className='w-full text-center mb-12 min-h-[80vh] flex flex-col '>
         <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
         <div className="my-8 overflow-hidden">
           <h2 className="names text-rose-950" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
@@ -110,7 +110,6 @@ const EventDetails = ({weddingData}) => {
           <p className="uppercase font-medium mb-4">{weddingData.location}</p>
           <p className="pr">Masa</p>
           <p className="uppercase font-medium">{formattedTime}</p>
-          <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
         </div>
         <style>{styles}</style>
     </div>

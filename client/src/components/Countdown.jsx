@@ -29,30 +29,26 @@ const Countdown = ({ weddingData }) => {
     }
 
   return (
-    <div className='w-full text-center '>
+    <div className='w-full text-center p-12 bg-opacity-10 bg-slate-400'>
         <h5 className='font-medium mb-4 text-rose-950'>Menghitung Hari</h5>
-        <div className='flex justify-center items-center gap-10'>
-            <div>
-                <p className='clash-display font-medium text-3xl'  >{timeLeft.days}</p>
+        <div className='flex justify-center items-center gap-4 sm:gap-10'>
+            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300' >
+                <p className='clash-display font-medium text-2xl sm:text-3xl'  >{timeLeft.days}</p>
                 <p>Hari</p>
             </div>
-            {/* <p className='font:bold text-2xl'>,</p> */}
-            <div>
-                <p className='clash-display font-medium text-3xl' >{timeLeft.hours}</p>
+            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                <p className='clash-display font-medium text-2xl sm:text-3xl' >{timeLeft.hours}</p>
                 <p>Jam</p>
             </div>
-            {/* <p className='font:bold text-2xl'>,</p> */}
-            <div>
-                <p className='clash-display font-medium text-3xl'>{timeLeft.minutes}</p>
+            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.minutes}</p>
                 <p>Minit</p>
             </div>
-            {/* <p className='font:bold text-2xl'>,</p> */}
-            <div>
-                <p className='clash-display font-medium text-3xl'>{timeLeft.seconds}</p>
+            <div className='shadow-lg rounded-lg p-3 w-20 shadow-slate-300'>
+                <p className='clash-display font-medium text-2xl sm:text-3xl'>{timeLeft.seconds}</p>
                 <p>Saat</p>
             </div>
         </div>
-        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
     </div>
   )
 }

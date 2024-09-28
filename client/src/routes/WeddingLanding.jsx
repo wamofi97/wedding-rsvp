@@ -80,7 +80,7 @@ const WeddingLanding = () => {
 `;
   
   return (
-    <div className='w-full overflow-hidden' style={{position: 'relative', minHeight:"100svh", backgroundColor:'#E9E9F0' }}>
+    <div className='w-full overflow-hidden bg-slate-100' style={{position: 'relative', minHeight:"100svh" }}>
         {loading ? 
         <div className="flex gap-2 items-center justify-center px-4 pt-8 pb-4 min-h-svh" style={{
           backgroundImage: `url(${backgroundImage})`,

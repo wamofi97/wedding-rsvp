@@ -24,10 +24,10 @@ const Dashboard = ({setAuth}) => {
       })
       
       const data = await response.json()
+      console.log(data)
       if(!data.has_wedding){
         navigate('/create-wedding')
       }
-
       setName(data.username)
       setWeddingPageLink(`${import.meta.env.VITE_DOMAIN_URL}/wedding/${data.id}`)
     } catch (error) {

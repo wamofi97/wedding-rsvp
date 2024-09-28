@@ -1,7 +1,7 @@
 const Aturcara = ({program}) => {
     
     return (
-    <div className='w-full'>
+    <div className='w-full p-12'>
         <h5 className="font-medium mb-4 text-center text-rose-950" >Aturcara</h5>
         {program &&
             program.programs.map((program) => {
@@ -14,7 +14,7 @@ const Aturcara = ({program}) => {
                 </div>
                 )})
         }
-        <hr className='my-12 h-1 bg-neutral-500 opacity-10 mx-auto'/>
+        
     </div>
   )
 }

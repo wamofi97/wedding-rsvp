@@ -19,7 +19,7 @@ router.post("/", authorization, async(req,res) =>{
 
         const result = await pool.query(
         `INSERT INTO weddings (user_id, wedding_title, father_name, mother_name, bride_name, groom_name, location, googlemapcode, date, time)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`,
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *`,
         [
             req.user,               
             weddingTitle,           
@@ -29,7 +29,7 @@ router.post("/", authorization, async(req,res) =>{
             groom,                  
             location,               
             googlemapcode,          
-            date,                   
+            date,                 
             time                    
         ]
         );
@@ -154,7 +154,8 @@ router.post("/:id/rsvps", async(req,res) =>{
 router.get("/:id/rsvps", authorization, async(req,res) =>{
     try {
         const id = req.params.id;
-        const result = await pool.query("SELECT * from rsvps where wedding_id = $1",[id]);
+        const result = await pool.query("SELECT r.*, w.rsvp_due_before from rsvps r LEFT JOIN weddings w ON r.wedding_id = w.id WHERE w.id = $1",[id]);
+        
         const rsvpData = result.rows;
         res.status(200).json( rsvpData );
     } catch (error) {

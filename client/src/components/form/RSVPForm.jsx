@@ -124,12 +124,6 @@ const RSVPForm = ({isOpen, onClose}) => {
                   <option value="Rakan">Rakan</option>
                   <option value="Jiran">Jiran</option>
               </select>
-
-              {/* <label className='pr block mb-1 text-start' htmlFor="attendance">Kehadiran</label>
-              <select className="w-full px-4 py-2 mb-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-100 text-sm" style={{fontFamily:'Montserrat'}} name="attendance" id="attendance" value={attendance} onChange={(e) => handleChange(e)}>
-                  <option value={true}>✅ Hadir</option>
-                  <option value={false}>❌ Tidak hadir</option>
-              </select> */}
               
               <label className='pr block mb-1 text-start' htmlFor="attendance">Kehadiran</label>
               <div className='flex'>
