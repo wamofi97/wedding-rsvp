@@ -12,6 +12,7 @@ import walimatulRSVPLogo from "../assets/walimatulRSVPLogo.svg"
 import Spinner from '../components/Spinner'
 import backgroundImage from '../assets/modalbackground.png';
 import NotFoundPage from './NotFoundPage'
+import Footer from '../components/Footer'
 
 const WeddingLanding = () => {
   const [loading, setLoading] = useState(true)
@@ -105,6 +106,7 @@ const WeddingLanding = () => {
         }}>
             <Spinner />
             <p className='text-2xl'>Loading..</p>
+            <Footer/>
         </div> : weddingData ? 
         <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> : <NotFoundPage/> }
         
