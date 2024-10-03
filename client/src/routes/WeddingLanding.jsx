@@ -27,11 +27,15 @@ const WeddingLanding = () => {
       if(response.ok){
         setLoading(false)
       }
+      if(!response.ok){
+        setLoading(false)
+        return <NotFoundPage />
+      }
       const data = await response.json()
       setWeddingData(data)
       document.title = "Walimatul Urus #" + data.wedding_title
     } catch (error) {
-      console.error(error.message)
+      console.error("error.message", error.message)
     }
   }
 
