@@ -82,7 +82,7 @@ const WeddingLanding = () => {
   @keyframes scroll {
       from {
         transform: translateX(-40vw);
-        opacity:10%
+        opacity:1%
       }
       to {
         transform: translate(0);
@@ -91,7 +91,7 @@ const WeddingLanding = () => {
     }
     
     .animate-scroll {
-      animation: scroll 2s ;
+      animation: scroll 1.5s ;
     }
 `;
   

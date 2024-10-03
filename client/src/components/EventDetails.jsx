@@ -83,7 +83,7 @@ const EventDetails = ({weddingData}) => {
 `;
 
   return (
-    <div className='w-full text-center mb-12 min-h-[80vh] flex flex-col '>
+    <div className='w-full text-center mb-12 min-h-[75vh] flex flex-col justify-center '>
         <p className="">Assalamualaikum & Salam Sejahtera, kami</p>
         <div className="my-8 overflow-hidden">
           <h2 className="names text-rose-950" style={{fontSize: '20px'}}>{weddingData.father_name}</h2>
