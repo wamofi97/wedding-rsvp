@@ -84,7 +84,7 @@ const EntryModal = ({weddingData, isOpen, setIsModalOpen }) => {
             <h6 className="font-normal" style={{fontSize:'20px', color: '#800020'}}>MAJLIS PERKAHWINAN</h6>
           </div>
           
-          <div className="">
+          <div className="overflow-hidden w-64 sm:w-80 mx-auto">
             <h5 className="names animate-fade-right">{ groomName}</h5>
             <h3 className='mt-2 font-normal '>&</h3>
             <h5 className="names leading-tight mb-8 animate-fade-left">{brideName}</h5>
