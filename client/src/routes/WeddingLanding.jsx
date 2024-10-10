@@ -25,6 +25,9 @@ const WeddingLanding = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/wedding/${id}`)
+      const data = await response.json()
+      console.log(data)
+      setWeddingData(data)
       if(response.ok){
         setLoading(false)
       }
@@ -32,9 +35,8 @@ const WeddingLanding = () => {
         setLoading(false)
         return <NotFoundPage />
       }
-      const data = await response.json()
-      setWeddingData(data)
       document.title = "Walimatul Urus #" + data.wedding_title
+      
     } catch (error) {
       console.error("error.message", error.message)
     }
@@ -107,8 +109,8 @@ const WeddingLanding = () => {
             <Spinner />
             <p className='text-2xl'>Loading..</p>
             <Footer/>
-        </div> : weddingData ? 
-        <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/> : <NotFoundPage/> }
+        </div> : weddingData.message === "Server error" ? <NotFoundPage/> :
+        <EntryModal weddingData={weddingData} isOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>  }
         
         {!isModalOpen && (
         <div className='px-4 pt-8 pb-4 animate-fade-in'>
