@@ -10,7 +10,6 @@ app.use(express.json())
 app.use(cors())
 
 //ROUTES
-app.get("/", (req, res) => res.send("Express on Vercel"));
 
 // register and login routes
 app.use('/auth' , require('./routes/jwtAuth'))
@@ -24,5 +23,3 @@ app.use("/wedding", require("./routes/wedding"))
 app.listen(port, () => {
     console.log(`server is running on port ${port}`)
 })
-
-export default app
