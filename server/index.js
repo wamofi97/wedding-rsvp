@@ -20,10 +20,6 @@ app.use("/dashboard", require("./routes/dashboard"))
 // createWedding, get wedding, update wedding route
 app.use("/wedding", require("./routes/wedding"))
 
-app.use('/' , (req, res) => {
-    res.send("server is running")
-})
-
 app.listen(port, () => {
     console.log(`server is running on port ${port}`)
 })
