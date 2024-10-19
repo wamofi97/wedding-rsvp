@@ -11,6 +11,10 @@ app.use(cors())
 
 //ROUTES
 
+app.use('/' , (req, res) => {
+    res.send("server is running")
+})
+
 // register and login routes
 app.use('/auth' , require('./routes/jwtAuth'))
 
