@@ -10,7 +10,7 @@ const Home = () => {
         <div>
           <h2 className='my-8 font-bold  mx-auto leading-tight sm:w-90' >Create the Perfect Wedding RSVP</h2>
           <p className='mb-2'>Planning your big day? Let us help you make it unforgettable. Create a beautiful and personalized wedding RSVP page that captures the essence of your special day.</p>
-          <div className='flex gap-2'>
+          <div className='flex justify-center gap-2'>
             <Link to="/register" className='max-w-fit '><button className='button btn-primary my-2'>GET STARTED ✨</button></Link>
             <a href="https://walimatul-rsvp.onrender.com/wedding/20f93cce-630f-4479-8b56-2e9eb885d401" target='_blank' className='max-w-fit '><button className='button btn-secondary my-2'>SEE DEMO</button></a>
           </div>
